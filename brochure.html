@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zambia Technology Roadshow — Agricultural Processing Catalog</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green:#1B5E20; --green-mid:#2E7D32; --green-light:#388E3C;
+  --yellow:#FBC02D; --yellow-dark:#F9A825;
+  --white:#FFFFFF; --off-white:#F9F7F2; --grey:#F3F0EB;
+  --blue:#0277BD; --blue-light:#E3F2FD;
+  --orange:#E65100; --orange-light:#FFF3E0;
+  --purple:#6A1B9A; --purple-light:#F3E5F5;
+  --teal:#00695C; --teal-light:#E0F2F1;
+  --text-dark:#1A1A1A; --text-mid:#444; --text-light:#777;
+  --shadow:0 8px 32px rgba(27,94,32,0.13);
+  --shadow-card:0 4px 18px rgba(27,94,32,0.10);
+  --radius:15px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--text-dark);overflow-x:hidden;}
+
+/* ══ PARTNER BANNER ══════════════════════════════════ */
+.partner-banner{background:#0D3610;padding:0;overflow:hidden;border-bottom:2px solid rgba(251,192,45,0.3);}
+.partner-banner-inner{display:flex;align-items:center;white-space:nowrap;}
+.partner-label{
+  background:var(--yellow);color:var(--green);
+  font-size:0.65rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;
+  padding:10px 20px;flex-shrink:0;z-index:2;
+  clip-path:polygon(0 0,calc(100% - 12px) 0,100% 50%,calc(100% - 12px) 100%,0 100%);
+  padding-right:28px;
+}
+.partner-track-wrap{overflow:hidden;flex:1;padding:8px 0;}
+.partner-track{display:flex;gap:0;animation:scrollPartners 40s linear infinite;}
+.partner-track:hover{animation-play-state:paused;}
+.partner-item{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:6px 28px;border-right:1px solid rgba(255,255,255,0.1);
+  flex-shrink:0;
+}
+.partner-logo-box{
+  width:36px;height:36px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;flex-shrink:0;
+}
+.partner-name{color:rgba(255,255,255,0.85);font-size:0.75rem;font-weight:600;letter-spacing:0.04em;}
+.partner-type{color:rgba(255,255,255,0.4);font-size:0.62rem;display:block;margin-top:1px;}
+@keyframes scrollPartners{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ══ NAV ═══════════════════════════════════════════ */
+nav{
+  position:sticky;top:0;z-index:200;background:var(--green);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;height:68px;box-shadow:0 2px 20px rgba(0,0,0,0.25);
+}
+.nav-logos{display:flex;align-items:center;gap:20px;}
+.logo-box{
+  background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.25);
+  border-radius:10px;padding:6px 14px;color:white;
+  font-size:0.7rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;
+  display:flex;align-items:center;gap:7px;
+}
+.logo-box .logo-icon{font-size:1.2rem;}
+.nav-links{display:flex;gap:24px;}
+.nav-links a{color:rgba(255,255,255,0.82);text-decoration:none;font-size:0.83rem;font-weight:500;letter-spacing:0.04em;transition:color .2s;}
+.nav-links a:hover{color:var(--yellow);}
+.nav-cta{background:var(--yellow);color:var(--green);font-weight:700;font-size:0.8rem;padding:8px 20px;border-radius:50px;text-decoration:none;letter-spacing:0.04em;transition:transform .15s,background .15s;}
+.nav-cta:hover{background:var(--yellow-dark);transform:translateY(-1px);}
+
+/* ══ HERO ════════════════════════════════════════════ */
+.hero{background:linear-gradient(135deg,var(--green) 0%,#2E7D32 55%,#1B5E20 100%);padding:80px 5% 0;position:relative;overflow:hidden;min-height:540px;display:flex;align-items:flex-end;}
+.hero-bg-pattern{position:absolute;inset:0;background-image:radial-gradient(circle at 80% 20%,rgba(251,192,45,0.12) 0%,transparent 50%),radial-gradient(circle at 10% 80%,rgba(251,192,45,0.08) 0%,transparent 40%);pointer-events:none;}
+.hero-dots{position:absolute;top:0;right:0;width:50%;height:100%;background-image:radial-gradient(circle,rgba(255,255,255,0.07) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;}
+.hero-content{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:flex-end;width:100%;max-width:1300px;margin:0 auto;}
+.hero-text{padding-bottom:70px;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(251,192,45,0.18);border:1.5px solid rgba(251,192,45,0.5);color:var(--yellow);font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:6px 16px;border-radius:50px;margin-bottom:22px;}
+.hero-badge::before{content:'🌱';}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,5vw,4.2rem);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:20px;}
+.hero-title .accent{color:var(--yellow);display:block;}
+.hero-sub{color:rgba(255,255,255,0.78);font-size:1rem;line-height:1.7;max-width:480px;margin-bottom:32px;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-primary{background:var(--yellow);color:var(--green);font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:50px;text-decoration:none;letter-spacing:0.04em;transition:transform .15s,box-shadow .15s;display:inline-flex;align-items:center;gap:7px;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(251,192,45,0.4);}
+.btn-outline{border:2px solid rgba(255,255,255,0.4);color:white;font-weight:600;font-size:0.9rem;padding:12px 24px;border-radius:50px;text-decoration:none;transition:border-color .15s,background .15s;}
+.btn-outline:hover{border-color:var(--yellow);background:rgba(251,192,45,0.1);}
+.hero-stats{display:flex;gap:28px;margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.15);}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;color:var(--yellow);line-height:1;}
+.stat-label{color:rgba(255,255,255,0.6);font-size:0.72rem;margin-top:3px;text-transform:uppercase;letter-spacing:0.08em;}
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:flex-end;}
+.hero-image-frame{width:100%;max-width:520px;background:rgba(255,255,255,0.06);border:2px solid rgba(255,255,255,0.15);border-bottom:none;border-radius:20px 20px 0 0;overflow:hidden;}
+.hero-img-placeholder{width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,rgba(255,255,255,0.04) 0%,rgba(251,192,45,0.1) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:40px;}
+.hero-img-icon{font-size:4.5rem;filter:drop-shadow(0 4px 16px rgba(0,0,0,0.3));}
+.hero-img-label{color:rgba(255,255,255,0.5);font-size:0.8rem;border:1px dashed rgba(255,255,255,0.2);padding:7px 18px;border-radius:50px;}
+.hero-floating-card{position:absolute;right:-18px;top:28px;background:white;border-radius:14px;padding:14px 18px;box-shadow:0 8px 32px rgba(0,0,0,0.2);width:170px;}
+.hfc-label{font-size:0.65rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.08em;}
+.hfc-value{font-size:1.3rem;font-weight:700;color:var(--green);}
+.hfc-sub{font-size:0.7rem;color:var(--text-light);}
+
+/* ══ WAVE ════════════════════════════════════════════ */
+.wave-divider{display:block;width:100%;overflow:hidden;line-height:0;}
+.wave-divider svg{display:block;width:100%;}
+
+/* ══ SECTION LABELS ═════════════════════════════════ */
+.section-label{display:inline-flex;align-items:center;gap:8px;font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px;}
+.section-label::before{content:'';display:block;width:26px;height:3px;border-radius:2px;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:700;line-height:1.2;margin-bottom:12px;}
+.section-desc{font-size:0.97rem;color:var(--text-mid);line-height:1.7;max-width:580px;}
+
+/* ══ CATALOG ════════════════════════════════════════ */
+#catalog{background:var(--off-white);padding:70px 5%;}
+.catalog-header{text-align:center;margin-bottom:50px;}
+.catalog-header .section-label{justify-content:center;color:var(--green-light);}
+.catalog-header .section-label::before{background:var(--green);}
+.catalog-header .section-title{color:var(--green);}
+.catalog-header .section-desc{margin:0 auto;}
+
+.filter-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:44px;}
+.filter-tab{padding:8px 18px;border-radius:50px;border:2px solid #E0E0E0;font-size:0.82rem;font-weight:600;cursor:pointer;transition:all .2s;background:white;color:var(--text-mid);}
+.filter-tab.active,.filter-tab:hover{background:var(--green);color:white;border-color:var(--green);}
+.filter-tab.blue.active,.filter-tab.blue:hover{background:var(--blue);border-color:var(--blue);}
+.filter-tab.orange.active,.filter-tab.orange:hover{background:var(--orange);border-color:var(--orange);}
+.filter-tab.purple.active,.filter-tab.purple:hover{background:var(--purple);border-color:var(--purple);}
+.filter-tab.teal.active,.filter-tab.teal:hover{background:var(--teal);border-color:var(--teal);}
+
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px;max-width:1400px;margin:0 auto;}
+
+/* ══ TECH CARD ══════════════════════════════════════ */
+.tech-card{background:white;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-card);transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column;position:relative;cursor:pointer;}
+.tech-card:hover{transform:translateY(-5px);box-shadow:0 14px 42px rgba(27,94,32,0.17);}
+.card-click-hint{position:absolute;top:11px;right:11px;background:rgba(0,0,0,0.06);color:var(--text-light);font-size:0.62rem;font-weight:600;letter-spacing:0.06em;padding:3px 9px;border-radius:20px;opacity:0;transition:opacity .2s;pointer-events:none;}
+.tech-card:hover .card-click-hint{opacity:1;}
+.card-top{padding:20px 20px 14px;display:flex;align-items:flex-start;gap:14px;}
+.card-icon{width:52px;height:52px;flex-shrink:0;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.7rem;}
+.card-icon.green{background:rgba(27,94,32,0.09);}
+.card-icon.blue{background:rgba(2,119,189,0.09);}
+.card-icon.orange{background:rgba(230,81,0,0.09);}
+.card-icon.purple{background:rgba(106,27,154,0.09);}
+.card-icon.teal{background:rgba(0,105,92,0.09);}
+.card-meta{flex:1;}
+.card-cat{font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:3px;}
+.card-cat.green{color:var(--green-light);}
+.card-cat.blue{color:var(--blue);}
+.card-cat.orange{color:var(--orange);}
+.card-cat.purple{color:var(--purple);}
+.card-cat.teal{color:var(--teal);}
+.card-name{font-size:1rem;font-weight:700;color:var(--text-dark);line-height:1.3;}
+.card-spec-badge{display:inline-flex;align-items:center;gap:5px;color:white;font-size:0.68rem;font-weight:700;padding:3px 11px;border-radius:20px;margin:0 20px 13px;width:fit-content;}
+.card-spec-badge.green{background:var(--green);}
+.card-spec-badge.blue{background:var(--blue);}
+.card-spec-badge.orange{background:var(--orange);}
+.card-spec-badge.purple{background:var(--purple);}
+.card-spec-badge.teal{background:var(--teal);}
+.card-spec-badge.grey{background:#757575;}
+.card-benefits{padding:0 20px 16px;flex:1;}
+.card-benefits-title{font-size:0.67rem;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:7px;}
+.benefits-list{list-style:none;}
+.benefits-list li{display:flex;align-items:flex-start;gap:7px;font-size:0.8rem;color:var(--text-mid);line-height:1.4;margin-bottom:4px;}
+.benefits-list li::before{content:'✓';font-weight:700;font-size:0.72rem;flex-shrink:0;margin-top:1px;}
+.benefits-list.green li::before{color:var(--green);}
+.benefits-list.blue li::before{color:var(--blue);}
+.benefits-list.orange li::before{color:var(--orange);}
+.benefits-list.purple li::before{color:var(--purple);}
+.benefits-list.teal li::before{color:var(--teal);}
+.card-footer{padding:13px 20px;border-top:1px solid #F0F0F0;display:flex;align-items:center;justify-content:space-between;}
+.card-price-hint{font-size:0.7rem;color:var(--text-light);}
+.btn-inquire{background:var(--yellow);color:var(--green);font-size:0.75rem;font-weight:700;padding:7px 15px;border-radius:50px;border:none;cursor:pointer;letter-spacing:0.04em;transition:transform .15s,background .15s;}
+.btn-inquire:hover{background:var(--yellow-dark);transform:scale(1.04);}
+
+/* ══ TABLES ══════════════════════════════════════════ */
+.tables-section{padding:70px 5%;}
+.tables-section.alt{background:white;}
+.table-block{max-width:1200px;margin:0 auto 70px;}
+.table-block:last-child{margin-bottom:0;}
+.table-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:14px;}
+.table-tag{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 14px;border-radius:50px;}
+.table-tag.green{background:rgba(27,94,32,0.1);color:var(--green);}
+.table-tag.blue{background:var(--blue-light);color:var(--blue);}
+.table-tag.orange{background:var(--orange-light);color:var(--orange);}
+.table-tag.purple{background:var(--purple-light);color:var(--purple);}
+.table-tag.teal{background:var(--teal-light);color:var(--teal);}
+.styled-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+.styled-table thead tr th{padding:14px 18px;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-align:left;color:white;}
+.styled-table.green thead{background:var(--green);}
+.styled-table.blue thead{background:var(--blue);}
+.styled-table.orange thead{background:var(--orange);}
+.styled-table.purple thead{background:var(--purple);}
+.styled-table.teal thead{background:var(--teal);}
+.styled-table tbody tr td{padding:12px 18px;font-size:0.85rem;color:var(--text-dark);border-bottom:1px solid #F0F0F0;vertical-align:middle;}
+.styled-table tbody tr:last-child td{border-bottom:none;}
+.styled-table tbody tr:nth-child(even) td{background:#FAFAFA;}
+.styled-table tbody tr:hover td{background:#F4F9F4;cursor:pointer;}
+.styled-table.blue tbody tr:hover td{background:#E8F4FD;}
+.styled-table.orange tbody tr:hover td{background:#FFF8F0;}
+.styled-table.purple tbody tr:hover td{background:#F8F0FF;}
+.styled-table.teal tbody tr:hover td{background:#E0F7F4;}
+.spec-pill{display:inline-block;font-size:0.67rem;font-weight:700;padding:2px 9px;border-radius:11px;margin:2px;}
+.spec-pill.green{background:rgba(27,94,32,0.1);color:var(--green);}
+.spec-pill.blue{background:var(--blue-light);color:var(--blue);}
+.spec-pill.orange{background:var(--orange-light);color:var(--orange);}
+.spec-pill.purple{background:var(--purple-light);color:var(--purple);}
+.spec-pill.teal{background:var(--teal-light);color:var(--teal);}
+.spec-pill.yellow{background:rgba(251,192,45,0.18);color:#7B5000;}
+.benefit-tag{display:inline-block;font-size:0.66rem;font-weight:600;padding:2px 8px;border-radius:9px;margin:2px;background:var(--grey);color:var(--text-mid);}
+.roi-value{font-weight:700;color:var(--green);font-size:0.9rem;}
+.roi-value.blue{color:var(--blue);}
+.roi-value.orange{color:var(--orange);}
+.roi-value.purple{color:var(--purple);}
+.roi-value.teal{color:var(--teal);}
+
+/* ══ PARTNERS SECTION ════════════════════════════════ */
+#partners{background:white;padding:70px 5%;}
+.partners-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;max-width:1200px;margin:40px auto 0;}
+.partner-card{background:var(--off-white);border:1.5px solid #E8E8E8;border-radius:14px;padding:20px;text-align:center;transition:transform .2s,box-shadow .2s;cursor:default;}
+.partner-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.08);}
+.partner-card-icon{font-size:2.2rem;margin-bottom:10px;}
+.partner-card-name{font-size:0.9rem;font-weight:700;color:var(--text-dark);margin-bottom:4px;}
+.partner-card-type{font-size:0.7rem;color:var(--text-light);font-weight:500;letter-spacing:0.06em;text-transform:uppercase;}
+.partner-card-desc{font-size:0.75rem;color:var(--text-mid);margin-top:7px;line-height:1.5;}
+.partner-card.add-more{border:2px dashed #D0D0D0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-light);font-size:0.82rem;min-height:130px;}
+.partner-card.add-more .plus{font-size:1.8rem;margin-bottom:6px;color:#BDBDBD;}
+
+/* ══ CTA ═════════════════════════════════════════════ */
+.cta-strip{background:linear-gradient(135deg,var(--green) 0%,#2E7D32 100%);padding:70px 5%;text-align:center;position:relative;overflow:hidden;}
+.cta-strip::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(251,192,45,0.12) 0%,transparent 70%);}
+.cta-strip h2{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,4vw,3rem);color:white;margin-bottom:14px;position:relative;}
+.cta-strip p{color:rgba(255,255,255,0.75);font-size:1rem;margin-bottom:32px;position:relative;}
+.cta-strip .btn-primary{position:relative;font-size:0.98rem;padding:15px 38px;}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;max-width:860px;margin:44px auto 0;position:relative;}
+.contact-item{background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.2);border-radius:13px;padding:18px;text-align:center;}
+.contact-item-icon{font-size:1.7rem;margin-bottom:7px;}
+.contact-item-label{font-size:0.67rem;color:rgba(255,255,255,0.6);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:3px;}
+.contact-item-value{font-size:0.88rem;color:white;font-weight:600;}
+
+/* ══ FOOTER ══════════════════════════════════════════ */
+footer{background:#0D3610;padding:36px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;}
+footer .foot-logo{color:var(--yellow);font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;}
+footer .foot-tagline{color:rgba(255,255,255,0.4);font-size:0.77rem;}
+footer .foot-copy{color:rgba(255,255,255,0.3);font-size:0.72rem;}
+
+/* ══ MODAL ═══════════════════════════════════════════ */
+.modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(10,30,10,0.75);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s ease;}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal-panel{background:white;border-radius:22px;width:100%;max-width:980px;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 32px 80px rgba(0,0,0,0.35);transform:translateY(40px) scale(0.97);transition:transform .35s cubic-bezier(.22,1,.36,1);}
+.modal-overlay.open .modal-panel{transform:translateY(0) scale(1);}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:18px 26px;border-bottom:1px solid #F0F0F0;flex-shrink:0;}
+.modal-header-left{display:flex;align-items:center;gap:13px;}
+.modal-header-icon{width:46px;height:46px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.55rem;flex-shrink:0;}
+.modal-header-icon.green{background:rgba(27,94,32,0.1);}
+.modal-header-icon.blue{background:rgba(2,119,189,0.1);}
+.modal-header-icon.orange{background:rgba(230,81,0,0.1);}
+.modal-header-icon.purple{background:rgba(106,27,154,0.1);}
+.modal-header-icon.teal{background:rgba(0,105,92,0.1);}
+.modal-cat{font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;}
+.modal-cat.green{color:var(--green-light);}
+.modal-cat.blue{color:var(--blue);}
+.modal-cat.orange{color:var(--orange);}
+.modal-cat.purple{color:var(--purple);}
+.modal-cat.teal{color:var(--teal);}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--text-dark);}
+.modal-close{width:36px;height:36px;border-radius:50%;border:none;background:#F5F5F5;cursor:pointer;font-size:1.1rem;color:var(--text-mid);display:flex;align-items:center;justify-content:center;transition:background .15s,transform .15s;}
+.modal-close:hover{background:#E8E8E8;transform:scale(1.08);}
+.modal-body{overflow-y:auto;flex:1;display:grid;grid-template-columns:1fr 1fr;}
+.modal-gallery{background:#F7F7F7;display:flex;flex-direction:column;padding:22px;gap:12px;border-right:1px solid #F0F0F0;}
+.gallery-main{width:100%;aspect-ratio:4/3;border-radius:13px;overflow:hidden;background:#EBEBEB;position:relative;}
+.gallery-main img{width:100%;height:100%;object-fit:cover;display:block;}
+.gallery-main .img-skeleton{position:absolute;inset:0;background:linear-gradient(90deg,#E8E8E8 25%,#F5F5F5 50%,#E8E8E8 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;}
+.gallery-thumbs{display:flex;gap:9px;}
+.gallery-thumb{flex:1;aspect-ratio:1;border-radius:9px;overflow:hidden;background:#EBEBEB;cursor:pointer;border:2px solid transparent;transition:border-color .15s;position:relative;}
+.gallery-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.gallery-thumb .img-skeleton{position:absolute;inset:0;background:linear-gradient(90deg,#E8E8E8 25%,#F5F5F5 50%,#E8E8E8 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;}
+.gallery-thumb.active.green{border-color:var(--green);}
+.gallery-thumb.active.blue{border-color:var(--blue);}
+.gallery-thumb.active.orange{border-color:var(--orange);}
+.gallery-thumb.active.purple{border-color:var(--purple);}
+.gallery-thumb.active.teal{border-color:var(--teal);}
+.gallery-source{font-size:0.63rem;color:var(--text-light);text-align:center;}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.modal-details{padding:24px;overflow-y:auto;display:flex;flex-direction:column;gap:20px;}
+.modal-spec-row{display:flex;gap:10px;flex-wrap:wrap;}
+.modal-spec-chip{display:flex;align-items:center;gap:5px;padding:7px 14px;border-radius:50px;font-size:0.75rem;font-weight:700;}
+.modal-spec-chip.power{color:white;}
+.modal-spec-chip.power.green{background:var(--green);}
+.modal-spec-chip.power.blue{background:var(--blue);}
+.modal-spec-chip.power.orange{background:var(--orange);}
+.modal-spec-chip.power.purple{background:var(--purple);}
+.modal-spec-chip.power.teal{background:var(--teal);}
+.modal-spec-chip.roi{background:rgba(251,192,45,0.18);color:#6B4400;}
+.modal-section-title{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);margin-bottom:9px;}
+.modal-ai-content{font-size:0.88rem;line-height:1.7;color:var(--text-mid);}
+.modal-ai-content p{margin-bottom:9px;}
+.modal-ai-content strong{color:var(--text-dark);}
+.modal-ai-loading{display:flex;align-items:center;gap:9px;font-size:0.83rem;color:var(--text-light);}
+.spinner{width:17px;height:17px;border-radius:50%;border:2px solid #E0E0E0;animation:spin .7s linear infinite;flex-shrink:0;}
+.spinner.green{border-top-color:var(--green);}
+.spinner.blue{border-top-color:var(--blue);}
+.spinner.orange{border-top-color:var(--orange);}
+.spinner.purple{border-top-color:var(--purple);}
+.spinner.teal{border-top-color:var(--teal);}
+@keyframes spin{to{transform:rotate(360deg)}}
+.modal-benefits-list{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.modal-benefits-list li{display:flex;gap:9px;align-items:flex-start;font-size:0.85rem;line-height:1.5;}
+.mbl-dot{width:20px;height:20px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:900;margin-top:1px;}
+.mbl-dot.green{background:rgba(27,94,32,0.12);color:var(--green);}
+.mbl-dot.blue{background:var(--blue-light);color:var(--blue);}
+.mbl-dot.orange{background:var(--orange-light);color:var(--orange);}
+.mbl-dot.purple{background:var(--purple-light);color:var(--purple);}
+.mbl-dot.teal{background:var(--teal-light);color:var(--teal);}
+.modal-io-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.modal-io-box{background:var(--grey);border-radius:11px;padding:12px 14px;}
+.modal-io-box-title{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);margin-bottom:7px;}
+.modal-io-tag{display:inline-block;font-size:0.72rem;background:white;border-radius:8px;padding:3px 9px;margin:2px;color:var(--text-mid);font-weight:500;}
+.modal-use-cases{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.use-case-chip{background:var(--grey);border-radius:9px;padding:9px 12px;font-size:0.76rem;font-weight:500;color:var(--text-mid);display:flex;align-items:center;gap:7px;}
+.modal-footer{padding:18px 26px;border-top:1px solid #F0F0F0;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-shrink:0;flex-wrap:wrap;}
+.modal-footer-note{font-size:0.75rem;color:var(--text-light);}
+.modal-footer-actions{display:flex;gap:10px;}
+.btn-modal-inquire{background:var(--yellow);color:var(--green);font-weight:700;font-size:0.85rem;padding:10px 24px;border-radius:50px;border:none;cursor:pointer;letter-spacing:0.04em;transition:background .15s,transform .15s;}
+.btn-modal-inquire:hover{background:var(--yellow-dark);transform:translateY(-1px);}
+.btn-modal-back{border:2px solid #E0E0E0;background:white;color:var(--text-mid);font-weight:600;font-size:0.82rem;padding:9px 20px;border-radius:50px;cursor:pointer;transition:border-color .15s;}
+.btn-modal-back:hover{border-color:#BDBDBD;}
+
+/* ══ RESPONSIVE ══════════════════════════════════════ */
+@media(max-width:900px){
+  nav .nav-links{display:none;}
+  .hero-content{grid-template-columns:1fr;}
+  .hero-visual{display:none;}
+  .hero-text{padding-bottom:50px;}
+  .modal-body{grid-template-columns:1fr;}
+  .modal-gallery{border-right:none;border-bottom:1px solid #F0F0F0;}
+  .modal-io-grid,.modal-use-cases{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .tech-grid{grid-template-columns:1fr;}
+  .nav-logos{gap:10px;}
+  .logo-box{font-size:0.62rem;padding:5px 10px;}
+  .styled-table thead th:nth-child(n+4),.styled-table tbody td:nth-child(n+4){display:none;}
+  .modal-panel{max-height:95vh;border-radius:16px;}
+  .partner-banner .partner-label{display:none;}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.hero-text{animation:fadeUp 0.7s ease both;}
+.hero-visual{animation:fadeUp 0.7s 0.2s ease both;}
+.tech-card{animation:fadeUp 0.45s ease both;}
+</style>
+</head>
+<body>
+
+<!-- ══ PARTNER BANNER ══════════════════════════════════ -->
+<div class="partner-banner">
+  <div class="partner-banner-inner">
+    <div class="partner-label">Our Partners</div>
+    <div class="partner-track-wrap">
+      <div class="partner-track" id="partnerTrack"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NAV ══════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-logos">
+    <div class="logo-box"><span class="logo-icon">🌍</span>Rockefeller Foundation</div>
+    <div class="logo-box"><span class="logo-icon">⚡</span>Customized Energy Solutions</div>
+  </div>
+  <div class="nav-links">
+    <a href="#catalog">Catalog</a>
+    <a href="#processing">Processing</a>
+    <a href="#cold-chain">Cold Chain</a>
+    <a href="#workshop">Workshop</a>
+    <a href="#partners">Partners</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Get a Quote</a>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div><div class="hero-dots"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">Zambia Technology Roadshow 2025</div>
+      <h1 class="hero-title">Press Locally,<span class="accent">Earn More.</span></h1>
+      <p class="hero-sub">Agri-processing, cold chain, and workshop machines engineered for Zambian farmers and rural entrepreneurs. Click any machine to explore images and full specifications.</p>
+      <div class="hero-actions">
+        <a href="#catalog" class="btn-primary">🔍 Browse All Technologies</a>
+        <a href="#contact" class="btn-outline">Request a Demo</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num" id="heroMachineCount">32</div><div class="stat-label">Technologies</div></div>
+        <div class="stat"><div class="stat-num">3×</div><div class="stat-label">Higher Value/Kg</div></div>
+        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Solar-Compatible</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-image-frame">
+        <div class="hero-img-placeholder">
+          <div class="hero-img-icon">⚙️</div>
+          <div class="hero-img-label">Agri-Processing Machinery</div>
+        </div>
+      </div>
+      <div class="hero-floating-card">
+        <div class="hfc-label">Anchor Load</div>
+        <div class="hfc-value">14.9 kW</div>
+        <div class="hfc-sub">Oil Expeller (Large)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider" style="background:var(--green);">
+  <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,70 L0,70 Z" fill="#F9F7F2"/>
+  </svg>
+</div>
+
+<!-- ══ CATALOG GRID ═══════════════════════════════════════ -->
+<section id="catalog">
+  <div class="catalog-header">
+    <div class="section-label green">Full Catalog</div>
+    <h2 class="section-title" style="color:var(--green)">All Technologies on Show</h2>
+    <p class="section-desc">Click any card to see images, full specifications, inputs/outputs, and community impact. Filter by category below.</p>
+  </div>
+  <div class="filter-tabs">
+    <button class="filter-tab active" onclick="filterCards('all',this)">All</button>
+    <button class="filter-tab" onclick="filterCards('agro',this)">🌾 Agro-Processing</button>
+    <button class="filter-tab blue" onclick="filterCards('cold',this)">❄️ Cold Chain</button>
+    <button class="filter-tab orange" onclick="filterCards('workshop',this)">🔧 Workshop</button>
+    <button class="filter-tab purple" onclick="filterCards('food',this)">🍽️ Food &amp; Cooking</button>
+    <button class="filter-tab teal" onclick="filterCards('transport',this)">🚲 Transport</button>
+  </div>
+  <div class="tech-grid" id="techGrid"></div>
+</section>
+
+<div class="wave-divider" style="background:var(--off-white);">
+  <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,30 C360,70 720,0 1080,40 C1260,60 1350,20 1440,30 L1440,70 L0,70 Z" fill="white"/>
+  </svg>
+</div>
+
+<!-- ══ TABLE: AGRO-PROCESSING ══════════════════════════════ -->
+<section id="processing" class="tables-section alt">
+  <div class="table-block">
+    <div class="table-header">
+      <div>
+        <div class="section-label green" style="color:var(--green-light);"><span style="background:var(--green);display:block;width:26px;height:3px;border-radius:2px;"></span>Category 1</div>
+        <h2 class="section-title" style="color:var(--green)">Agro-Processing Machinery</h2>
+        <p class="section-desc" style="max-width:500px">High-ROI processing equipment for grain milling, oil extraction, feed mixing, and crop preparation.</p>
+      </div>
+      <span class="table-tag green">🌾 Anchor Loads · High ROI</span>
+    </div>
+    <table class="styled-table green" id="agroTable"></table>
+  </div>
+</section>
+
+<div class="wave-divider" style="background:white;">
+  <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,20 C480,70 960,0 1440,50 L1440,70 L0,70 Z" fill="var(--off-white)"/>
+  </svg>
+</div>
+
+<!-- ══ TABLE: COLD CHAIN ═══════════════════════════════════ -->
+<section id="cold-chain" class="tables-section">
+  <div class="table-block">
+    <div class="table-header">
+      <div>
+        <div class="section-label blue" style="color:var(--blue);"><span style="background:var(--blue);display:block;width:26px;height:3px;border-radius:2px;"></span>Category 2</div>
+        <h2 class="section-title" style="color:var(--blue)">Cold Chain &amp; Refrigeration</h2>
+        <p class="section-desc" style="max-width:500px">Preserve produce longer, reduce post-harvest losses, and unlock higher-value markets with reliable cold storage.</p>
+      </div>
+      <span class="table-tag blue">❄️ Reduce Post-Harvest Loss</span>
+    </div>
+    <table class="styled-table blue" id="coldTable"></table>
+  </div>
+</section>
+
+<div class="wave-divider" style="background:var(--off-white);">
+  <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,50 C300,10 700,70 1100,20 C1300,0 1380,40 1440,30 L1440,70 L0,70 Z" fill="white"/>
+  </svg>
+</div>
+
+<!-- ══ TABLE: WORKSHOP & MANUFACTURING ════════════════════ -->
+<section id="workshop" class="tables-section alt">
+  <div class="table-block">
+    <div class="table-header">
+      <div>
+        <div class="section-label orange" style="color:var(--orange);"><span style="background:var(--orange);display:block;width:26px;height:3px;border-radius:2px;"></span>Category 3</div>
+        <h2 class="section-title" style="color:var(--orange)">Workshop, Carpentry &amp; Manufacturing</h2>
+        <p class="section-desc" style="max-width:500px">Tools for rural fabrication, repair, and light manufacturing that create skilled employment and support local infrastructure.</p>
+      </div>
+      <span class="table-tag orange">🔧 Skilled Jobs · Diversification</span>
+    </div>
+    <table class="styled-table orange" id="workshopTable"></table>
+  </div>
+</section>
+
+<div class="wave-divider" style="background:white;">
+  <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,40 C240,10 600,70 900,30 C1200,0 1380,50 1440,40 L1440,70 L0,70 Z" fill="var(--off-white)"/>
+  </svg>
+</div>
+
+<!-- ══ TABLE: FOOD, COOKING & TRANSPORT ════════════════════ -->
+<section class="tables-section">
+  <div class="table-block">
+    <div class="table-header">
+      <div>
+        <div class="section-label purple" style="color:var(--purple);"><span style="background:var(--purple);display:block;width:26px;height:3px;border-radius:2px;"></span>Category 4</div>
+        <h2 class="section-title" style="color:var(--purple)">Food Retail, Clean Cooking &amp; Transport</h2>
+        <p class="section-desc" style="max-width:500px">Entry-level productive appliances for food vendors, clean cooking transition, and rural e-mobility services.</p>
+      </div>
+      <span class="table-tag purple">🍽️ Low Capital · Fast Payback</span>
+    </div>
+    <table class="styled-table purple" id="foodTable"></table>
+  </div>
+</section>
+
+<div class="wave-divider" style="background:var(--off-white);">
+  <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,20 C360,70 900,0 1440,50 L1440,70 L0,70 Z" fill="white"/>
+  </svg>
+</div>
+
+<!-- ══ PARTNERS SECTION ════════════════════════════════════ -->
+<section id="partners" class="tables-section alt" style="background:white;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="catalog-header" style="text-align:left;margin-bottom:30px;">
+      <div class="section-label" style="color:var(--green-light);"><span style="background:var(--green);display:block;width:26px;height:3px;border-radius:2px;margin-right:8px;"></span>Ecosystem Partners</div>
+      <h2 class="section-title" style="color:var(--green)">Our Partners &amp; Collaborators</h2>
+      <p class="section-desc">The Zambia Technology Roadshow brings together leading organisations in energy access, agriculture, finance, and rural development.</p>
+    </div>
+    <div class="partners-grid" id="partnersGrid"></div>
+  </div>
+</section>
+
+<div class="wave-divider" style="background:white;">
+  <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,0 C360,80 720,0 1080,60 C1260,80 1380,20 1440,40 L1440,80 L0,80 Z" fill="var(--green)"/>
+  </svg>
+</div>
+
+<!-- ══ CTA ════════════════════════════════════════════════ -->
+<section id="contact" class="cta-strip">
+  <h2>Ready to Transform Your Farm Business?</h2>
+  <p>Speak with a technology advisor at the Roadshow. Live demonstrations available.</p>
+  <a href="mailto:info@cesenergy.co.zm" class="btn-primary">📞 Inquire Now</a>
+  <div class="contact-grid">
+    <div class="contact-item"><div class="contact-item-icon">📍</div><div class="contact-item-label">Location</div><div class="contact-item-value">Lusaka, Zambia</div></div>
+    <div class="contact-item"><div class="contact-item-icon">📞</div><div class="contact-item-label">Phone</div><div class="contact-item-value">+260 (0) 211 000 000</div></div>
+    <div class="contact-item"><div class="contact-item-icon">✉️</div><div class="contact-item-label">Email</div><div class="contact-item-value">info@cesenergy.co.zm</div></div>
+    <div class="contact-item"><div class="contact-item-icon">🕐</div><div class="contact-item-label">Hours</div><div class="contact-item-value">Mon–Fri 8AM–5PM CAT</div></div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="foot-logo">Zambia Technology Roadshow</div>
+    <div class="foot-tagline">Empowering Agri-Entrepreneurs Across Zambia</div>
+  </div>
+  <div class="foot-copy">© 2025 Customized Energy Solutions · Supported by The Rockefeller Foundation</div>
+</footer>
+
+<!-- ══ DETAIL MODAL ════════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal-panel" id="modalPanel">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-header-icon" id="mIcon"></div>
+        <div>
+          <div class="modal-cat" id="mCat"></div>
+          <div class="modal-title" id="mTitle"></div>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-gallery">
+        <div class="gallery-main" id="galleryMain"><div class="img-skeleton"></div></div>
+        <div class="gallery-thumbs" id="galleryThumbs"></div>
+        <div class="gallery-source" id="gallerySource">Loading images…</div>
+      </div>
+      <div class="modal-details">
+        <div class="modal-spec-row" id="mSpecRow"></div>
+        <div>
+          <div class="modal-section-title">About this Machine</div>
+          <div class="modal-ai-content" id="mDescription">
+            <div class="modal-ai-loading"><div class="spinner" id="descSpinner"></div><span>Generating description…</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="modal-section-title">Key Benefits</div>
+          <ul class="modal-benefits-list" id="mBenefits"></ul>
+        </div>
+        <div>
+          <div class="modal-section-title">Inputs &amp; Outputs</div>
+          <div class="modal-io-grid" id="mIOGrid"></div>
+        </div>
+        <div>
+          <div class="modal-section-title">Community Impact</div>
+          <div class="modal-ai-content" id="mImpact"></div>
+        </div>
+        <div>
+          <div class="modal-section-title">Ideal For</div>
+          <div class="modal-use-cases" id="mUseCases">
+            <div class="modal-ai-loading"><div class="spinner" id="ucSpinner"></div><span>Generating use cases…</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="modal-section-title">Technical Specifications</div>
+          <div id="mSpecTable"></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="modal-footer-note" id="mFooterNote"></div>
+      <div class="modal-footer-actions">
+        <button class="btn-modal-back" onclick="closeModal()">← Back to Catalog</button>
+        <button class="btn-modal-inquire" id="mInquireBtn">📩 Inquire Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCRIPTS ════════════════════════════════════════════ -->
+<script>
+/* ─────────────────────────────────────────────
+   PARTNERS DATA
+───────────────────────────────────────────── */
+const partners = [
+  { name:'Rockefeller Foundation', type:'Lead Funder', icon:'🌍', desc:'Pioneering rural energy access and agricultural transformation across Africa.' },
+  { name:'Customized Energy Solutions', type:'Lead Organiser', icon:'⚡', desc:'Specialist in productive use of energy and mini-grid appliance deployment.' },
+  { name:'Jacana', type:'Energy Access', icon:'🦅', desc:'Connecting rural communities to sustainable energy systems.' },
+  { name:'Enno\'s Solar Pumps', type:'Solar Irrigation', icon:'☀️', desc:'Solar-powered water pumping solutions for year-round farming.' },
+  { name:'Buffalo Bicycles', type:'Transport Partner', icon:'🚲', desc:'Affordable bicycles and e-bikes enabling rural mobility and logistics.' },
+  { name:'Your Bank Partner', type:'Finance', icon:'🏦', desc:'Agricultural loans and MSME financing for equipment purchase.' },
+  { name:'Add a Partner', type:'', icon:'➕', desc:'', placeholder:true },
+  { name:'Add a Partner', type:'', icon:'➕', desc:'', placeholder:true },
+];
+
+/* ─────────────────────────────────────────────
+   MACHINE DATA — sourced from provided JSON
+───────────────────────────────────────────── */
+const machines = [
+  // ── AGRO-PROCESSING ──────────────────────────────────
+  {
+    id:'hm1', filterCat:'agro', color:'green', icon:'⚙️',
+    name:'Hammer Mill', category:'Agro-processing',
+    kw:5.6, size:'Medium',
+    inputs:['Maize','Millet','Sorghum','Grains'],
+    outputs:['Flour','Animal feed'],
+    benefits:['Reduces post-harvest losses','Creates local milling businesses','Improves food security'],
+    impact:'Farmers can process crops locally instead of transporting them to distant towns.',
+    pueRole:'Anchor appliance for rural agro-processing clusters.',
+    stakeholder:'Reliable electricity demand and strong link to rural agricultural productivity.'
+  },
+  {
+    id:'dh1', filterCat:'agro', color:'green', icon:'🌾',
+    name:'Dehuller', category:'Agro-processing',
+    kw:11.2, size:'Medium',
+    inputs:['Rice','Maize','Grains'],
+    outputs:['Dehulled grain'],
+    benefits:['Improves crop value','Reduces manual processing','Increases farmer income'],
+    impact:'Allows local grain processing before market sale.',
+    pueRole:'Stimulates agricultural processing industries.',
+    stakeholder:'High utilization potential in farming communities.'
+  },
+  {
+    id:'oe1', filterCat:'agro', color:'green', icon:'🫙',
+    name:'Oil Expeller', category:'Agro-processing',
+    kw:14.9, size:'Large',
+    inputs:['Sunflower seeds','Groundnuts','Soybeans'],
+    outputs:['Cooking oil','Oil cake for livestock'],
+    benefits:['Local cooking oil production','Supports livestock feed industry','High value agro-processing'],
+    impact:'Creates rural agro-processing enterprises that retain agricultural value locally.',
+    pueRole:'High-power anchor appliance for mini-grids.',
+    stakeholder:'Dual revenue streams and high productive electricity demand.'
+  },
+  {
+    id:'pb1', filterCat:'agro', color:'green', icon:'🥜',
+    name:'Peanut Butter Machine', category:'Food processing',
+    kw:1.2, size:'Small',
+    inputs:['Roasted peanuts'],
+    outputs:['Peanut butter'],
+    benefits:['Creates packaged food products','Supports small food businesses','High-margin product'],
+    impact:'Enables microenterprises producing local food products.',
+    pueRole:'Encourages value-added food production.',
+    stakeholder:'Small machine with high entrepreneurship potential.'
+  },
+  {
+    id:'fm1', filterCat:'agro', color:'green', icon:'🐄',
+    name:'Feed Mixer', category:'Agro-processing',
+    kw:4.1, size:'Medium',
+    inputs:['Grain bran','Soy meal','Additives'],
+    outputs:['Animal feed'],
+    benefits:['Reduces livestock feed costs','Supports poultry farming','Encourages livestock businesses'],
+    impact:'Supports poultry and livestock farmers.',
+    pueRole:'Links electricity use with livestock productivity.',
+    stakeholder:'Supports rural livestock value chains.'
+  },
+  {
+    id:'gd1', filterCat:'agro', color:'green', icon:'🥜',
+    name:'Groundnut Decorticator', category:'Agro-processing',
+    kw:2.2, size:'Small',
+    inputs:['Groundnuts'],
+    outputs:['Shelled peanuts','Peanut husks'],
+    benefits:['Reduces manual labor','Improves processing efficiency'],
+    impact:'Increases farmer productivity.',
+    pueRole:'Entry-level productive appliance.',
+    stakeholder:'Accessible technology for small agro-processors.'
+  },
+  {
+    id:'ip1', filterCat:'agro', color:'teal', icon:'💧',
+    name:'Irrigation Pump', category:'Agriculture',
+    kw:2.2, size:'Small',
+    inputs:['Water','Electricity'],
+    outputs:['Irrigated farmland'],
+    benefits:['Enables dry-season farming','Improves crop yields'],
+    impact:'Allows year-round agricultural production.',
+    pueRole:'Direct connection between electricity and agricultural productivity.',
+    stakeholder:'Supports climate-resilient agriculture.'
+  },
+  // ── COLD CHAIN ───────────────────────────────────────
+  {
+    id:'df1', filterCat:'cold', color:'blue', icon:'🧊',
+    name:'Deep Freezer', category:'Cold chain',
+    kw:0.4, size:'Small',
+    inputs:['Electricity','Food products'],
+    outputs:['Preserved food'],
+    benefits:['Reduces food spoilage','Supports beverage businesses'],
+    impact:'Allows traders to store fish, meat, and beverages.',
+    pueRole:'Creates continuous electricity demand.',
+    stakeholder:'High adoption rate among rural retailers.'
+  },
+  {
+    id:'rf1', filterCat:'cold', color:'blue', icon:'❄️',
+    name:'Refrigerator', category:'Cold chain',
+    kw:0.25, size:'Small',
+    inputs:['Electricity','Food and drinks'],
+    outputs:['Chilled products'],
+    benefits:['Supports food retail businesses','Improves food storage'],
+    impact:'Enables beverage and dairy businesses.',
+    pueRole:'Encourages small retail electricity demand.',
+    stakeholder:'Key appliance for rural microenterprises.'
+  },
+  {
+    id:'im1', filterCat:'cold', color:'blue', icon:'🧊',
+    name:'Ice Maker', category:'Cold chain',
+    kw:3, size:'Medium',
+    inputs:['Water','Electricity'],
+    outputs:['Ice cubes'],
+    benefits:['Supports fisheries','Cold beverage supply'],
+    impact:'Essential for fish preservation and retail.',
+    pueRole:'High daily energy consumption supporting mini-grid load.',
+    stakeholder:'Profitable appliance for rural businesses.'
+  },
+  {
+    id:'cr1', filterCat:'cold', color:'blue', icon:'🥬',
+    name:'Small Cold Room', category:'Cold chain',
+    kw:8, size:'Large',
+    inputs:['Electricity','Perishable goods'],
+    outputs:['Preserved food products'],
+    benefits:['Reduces post-harvest losses','Supports fish and vegetable storage'],
+    impact:'Enables farmers and traders to store produce before sale.',
+    pueRole:'High productive energy demand anchor load.',
+    stakeholder:'Significant economic impact for agricultural supply chains.'
+  },
+  // ── WORKSHOP & MANUFACTURING ─────────────────────────
+  {
+    id:'wm1', filterCat:'workshop', color:'orange', icon:'🔩',
+    name:'Welding Machine', category:'Metal work',
+    kw:5, size:'Medium',
+    inputs:['Metal rods','Steel structures'],
+    outputs:['Fabricated metal structures'],
+    benefits:['Supports construction','Creates skilled jobs','Enables metal fabrication businesses'],
+    impact:'Allows local fabrication of gates, farm tools, and building structures.',
+    pueRole:'High-impact productive appliance for rural manufacturing.',
+    stakeholder:'Creates skilled employment and increases electricity demand.'
+  },
+  {
+    id:'sm1', filterCat:'workshop', color:'orange', icon:'🪡',
+    name:'Sewing Machine', category:'Light manufacturing',
+    kw:0.3, size:'Small',
+    inputs:['Fabric','Thread'],
+    outputs:['Clothing','Textile products'],
+    benefits:['Supports tailoring businesses','Low energy consumption','Accessible entrepreneurship'],
+    impact:'Creates employment opportunities in tailoring and garment production.',
+    pueRole:'Ideal entry-level productive appliance for electrified villages.',
+    stakeholder:'Strong potential for women-led enterprises.'
+  },
+  {
+    id:'ac1', filterCat:'workshop', color:'orange', icon:'🌬️',
+    name:'Air Compressor', category:'Workshop',
+    kw:2, size:'Medium',
+    inputs:['Electricity'],
+    outputs:['Compressed air for tools'],
+    benefits:['Supports mechanical workshops','Used in multiple industries'],
+    impact:'Allows rural mechanics to operate tire repair and spray painting services.',
+    pueRole:'Supports diversified rural service industries.',
+    stakeholder:'Important infrastructure for technical workshops.'
+  },
+  {
+    id:'os1', filterCat:'workshop', color:'orange', icon:'🪵',
+    name:'Orbital Saw', category:'Carpentry',
+    kw:1, size:'Small',
+    inputs:['Wood'],
+    outputs:['Cut wooden parts'],
+    benefits:['Improves woodworking efficiency','Supports furniture production'],
+    impact:'Enables carpenters to produce doors, windows, and furniture locally.',
+    pueRole:'Supports rural construction and carpentry industries.',
+    stakeholder:'Supports local manufacturing and infrastructure development.'
+  },
+  {
+    id:'pl1', filterCat:'workshop', color:'orange', icon:'🪚',
+    name:'Planer (Woodworking)', category:'Carpentry',
+    kw:1.5, size:'Medium',
+    inputs:['Rough wood boards'],
+    outputs:['Smooth finished wood'],
+    benefits:['Improves wood finishing quality','Supports furniture production'],
+    impact:'Enhances quality of carpentry products.',
+    pueRole:'Supports woodworking businesses using electricity.',
+    stakeholder:'Encourages small manufacturing clusters.'
+  },
+  {
+    id:'sd1', filterCat:'workshop', color:'orange', icon:'🔨',
+    name:'Sander', category:'Carpentry',
+    kw:0.5, size:'Small',
+    inputs:['Wood surfaces'],
+    outputs:['Smooth finished surfaces'],
+    benefits:['Improves product finishing','Reduces manual labor'],
+    impact:'Improves furniture and carpentry product quality.',
+    pueRole:'Supports productive electricity use in workshops.',
+    stakeholder:'Supports small manufacturing enterprises.'
+  },
+  {
+    id:'ag1', filterCat:'workshop', color:'orange', icon:'⚙️',
+    name:'Angle Grinder', category:'Workshop',
+    kw:1, size:'Small',
+    inputs:['Metal or construction materials'],
+    outputs:['Cut or polished materials'],
+    benefits:['Versatile tool for metal work','Supports repair businesses'],
+    impact:'Enables rural workshops to perform repairs and fabrication.',
+    pueRole:'Small but important electricity load for technical workshops.',
+    stakeholder:'Supports skilled rural technicians.'
+  },
+  {
+    id:'dm1', filterCat:'workshop', color:'orange', icon:'🔧',
+    name:'Drilling Machine', category:'Workshop',
+    kw:0.8, size:'Small',
+    inputs:['Metal, wood or masonry surfaces'],
+    outputs:['Drilled holes for construction or assembly'],
+    benefits:['Essential for repairs and fabrication','Supports construction work'],
+    impact:'Used widely in rural repair and construction services.',
+    pueRole:'Supports rural technical services.',
+    stakeholder:'Important tool for local infrastructure development.'
+  },
+  // ── FOOD RETAIL, COOKING & TRANSPORT ────────────────
+  {
+    id:'fz1', filterCat:'food', color:'purple', icon:'🧃',
+    name:'Freezits Machine', category:'Food retail',
+    kw:1.5, size:'Small',
+    inputs:['Juice mix','Water'],
+    outputs:['Frozen drinks'],
+    benefits:['Supports youth businesses','Popular consumer product'],
+    impact:'Creates street vending opportunities.',
+    pueRole:'Encourages daytime electricity demand.',
+    stakeholder:'Low-cost productive appliance.'
+  },
+  {
+    id:'pc1', filterCat:'food', color:'purple', icon:'🍿',
+    name:'Popcorn Machine', category:'Food retail',
+    kw:1.2, size:'Small',
+    inputs:['Maize kernels','Oil'],
+    outputs:['Popcorn'],
+    benefits:['Low-cost food business','Quick product preparation'],
+    impact:'Creates income opportunities for small vendors and youth.',
+    pueRole:'Encourages small retail electricity use.',
+    stakeholder:'Low capital equipment with fast payback.'
+  },
+  {
+    id:'fc1', filterCat:'food', color:'purple', icon:'🛒',
+    name:'Food Storage Cart', category:'Food retail infrastructure',
+    kw:0, size:'Small',
+    inputs:['Fresh produce','Packaged food items'],
+    outputs:['Mobile food retail service'],
+    benefits:['Improves market access for food vendors','Low-cost entry into food retail','Supports informal food markets'],
+    impact:'Allows small traders to transport and sell food products safely in village markets.',
+    pueRole:'Supports food value chains around energy-powered cold storage and food processing.',
+    stakeholder:'Enables micro-enterprises and complements energy-enabled food businesses.'
+  },
+  {
+    id:'ep1', filterCat:'food', color:'purple', icon:'🫕',
+    name:'Electrical Pressure Cooker', category:'Cooking appliance',
+    kw:1.3, size:'Small',
+    inputs:['Electricity','Food ingredients','Water'],
+    outputs:['Cooked meals'],
+    benefits:['Energy efficient cooking','Reduces cooking time','Improves household productivity'],
+    impact:'Supports small restaurants and households transitioning to clean cooking solutions.',
+    pueRole:'Encourages productive daytime electricity use in food businesses.',
+    stakeholder:'Supports clean energy cooking transition and productive food enterprises.'
+  },
+  {
+    id:'ic1', filterCat:'food', color:'purple', icon:'🍳',
+    name:'Induction Cooktop', category:'Cooking appliance',
+    kw:1.8, size:'Small',
+    inputs:['Electricity','Cooking utensils','Food ingredients'],
+    outputs:['Cooked food'],
+    benefits:['High energy efficiency','Safer cooking compared to open flames','Fast heating'],
+    impact:'Allows small food vendors to cook meals using electricity rather than charcoal or firewood.',
+    pueRole:'Supports electrification of small restaurants and food vendors.',
+    stakeholder:'Contributes to decarbonization of rural cooking.'
+  },
+  {
+    id:'bg1', filterCat:'food', color:'teal', icon:'🔥',
+    name:'Biogas Cookstove', category:'Clean cooking',
+    kw:0, size:'Small',
+    inputs:['Biogas fuel'],
+    outputs:['Cooked food'],
+    benefits:['Reduces reliance on firewood','Uses locally produced biogas','Improves indoor air quality'],
+    impact:'Supports households with livestock-based biogas systems.',
+    pueRole:'Complements renewable energy systems in rural communities.',
+    stakeholder:'Supports circular energy systems and clean cooking programs.'
+  },
+  {
+    id:'cs1', filterCat:'food', color:'teal', icon:'🪵',
+    name:'Improved Cookstove', category:'Clean cooking',
+    kw:0, size:'Small',
+    inputs:['Biomass fuel'],
+    outputs:['Cooked food'],
+    benefits:['More efficient than traditional stoves','Reduces firewood consumption','Lower indoor smoke emissions'],
+    impact:'Improves household health while reducing environmental impact.',
+    pueRole:'Supports energy-efficient cooking in areas without electricity access.',
+    stakeholder:'Relevant for clean cooking and carbon finance programs.'
+  },
+  {
+    id:'cs2', filterCat:'food', color:'teal', icon:'🪵',
+    name:'Improved Cookstove (Germany)', category:'Clean cooking',
+    kw:0, size:'Small',
+    inputs:['Biomass fuel'],
+    outputs:['Cooked food'],
+    benefits:['High combustion efficiency','Reduced emissions','Durable design'],
+    impact:'Improves cooking conditions and reduces deforestation pressure.',
+    pueRole:'Complements rural electrification strategies.',
+    stakeholder:'High-quality clean cooking technology with strong development impact.'
+  },
+  // ── TRANSPORT ────────────────────────────────────────
+  {
+    id:'eb1', filterCat:'transport', color:'teal', icon:'🚲',
+    name:'E-Bike Charger', category:'Transport',
+    kw:0.6, size:'Small',
+    inputs:['Electricity','E-bike batteries'],
+    outputs:['Charged batteries'],
+    benefits:['Supports electric mobility','Reduces transport costs','Encourages clean transport'],
+    impact:'Allows rural entrepreneurs to run electric motorcycle or delivery services.',
+    pueRole:'Creates new electricity demand through transport electrification.',
+    stakeholder:'Supports emerging rural e-mobility markets.'
+  },
+];
+
+/* ─────────────────────────────────────────────
+   COLOUR / CATEGORY HELPERS
+───────────────────────────────────────────── */
+const catLabel = {
+  agro:'Agro-Processing', cold:'Cold Chain', workshop:'Workshop & Manufacturing',
+  food:'Food, Cooking & Retail', transport:'Transport'
+};
+function getColor(m){
+  if(m.filterCat==='cold') return 'blue';
+  if(m.filterCat==='workshop') return 'orange';
+  if(m.filterCat==='food') return m.color || 'purple';
+  if(m.filterCat==='transport') return 'teal';
+  return m.color || 'green';
+}
+function kwLabel(kw){ return kw===0 ? 'Non-electric' : kw+' kW'; }
+
+/* ─────────────────────────────────────────────
+   PARTNER BANNER
+───────────────────────────────────────────── */
+function buildPartnerBanner(){
+  const track = document.getElementById('partnerTrack');
+  // duplicate for seamless loop
+  const all = [...partners, ...partners].filter(p=>!p.placeholder);
+  const colors = ['#1B5E20','#0277BD','#E65100','#6A1B9A','#00695C','#F57F17','#880E4F'];
+  let html = all.map((p,i)=>`
+    <div class="partner-item">
+      <div class="partner-logo-box" style="background:${colors[i%colors.length]}22;">
+        <span>${p.icon}</span>
+      </div>
+      <div>
+        <div class="partner-name">${p.name}</div>
+        <span class="partner-type">${p.type}</span>
+      </div>
+    </div>`).join('');
+  track.innerHTML = html;
+}
+
+/* ─────────────────────────────────────────────
+   PARTNERS GRID
+───────────────────────────────────────────── */
+function buildPartnersGrid(){
+  const grid = document.getElementById('partnersGrid');
+  const colors = ['var(--green)','var(--blue)','var(--orange)','var(--purple)','var(--teal)','#F57F17','#880E4F','#37474F'];
+  grid.innerHTML = partners.map((p,i) => p.placeholder ? `
+    <div class="partner-card add-more">
+      <div class="plus">＋</div>
+      <div>Partner TBC</div>
+      <div style="font-size:0.68rem;margin-top:4px">To be confirmed</div>
+    </div>` : `
+    <div class="partner-card">
+      <div class="partner-card-icon" style="background:${colors[i%colors.length]}18;width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 10px;">${p.icon}</div>
+      <div class="partner-card-name">${p.name}</div>
+      <div class="partner-card-type">${p.type}</div>
+      <div class="partner-card-desc">${p.desc}</div>
+    </div>`).join('');
+}
+
+/* ─────────────────────────────────────────────
+   RENDER CARDS
+───────────────────────────────────────────── */
+function renderCards(filter='all'){
+  const grid = document.getElementById('techGrid');
+  grid.innerHTML='';
+  const filtered = filter==='all' ? machines : machines.filter(m=>m.filterCat===filter);
+  filtered.forEach((m,i)=>{
+    const col = getColor(m);
+    const card = document.createElement('div');
+    card.className='tech-card';
+    card.style.animationDelay=(i*0.035)+'s';
+    card.innerHTML=`
+      <div class="card-click-hint">Click to explore →</div>
+      <div class="card-top">
+        <div class="card-icon ${col}">${m.icon}</div>
+        <div class="card-meta">
+          <div class="card-cat ${col}">${m.category}</div>
+          <div class="card-name">${m.name}</div>
+        </div>
+      </div>
+      <div class="card-spec-badge ${m.kw===0?'grey':col}">⚡ ${kwLabel(m.kw)} · ${m.size}</div>
+      <div class="card-benefits">
+        <div class="card-benefits-title">Key Benefits</div>
+        <ul class="benefits-list ${col}">${m.benefits.slice(0,3).map(b=>`<li>${b}</li>`).join('')}</ul>
+      </div>
+      <div class="card-footer">
+        <div class="card-price-hint">PUE Role: ${m.pueRole.substring(0,38)}…</div>
+        <button class="btn-inquire" onclick="event.stopPropagation();inquire('${m.name}')">Inquire</button>
+      </div>`;
+    card.addEventListener('click',()=>openModal(m.id));
+    grid.appendChild(card);
+  });
+  document.getElementById('heroMachineCount').textContent = machines.length;
+}
+
+function filterCards(cat,btn){
+  document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  renderCards(cat);
+}
+function inquire(name){
+  window.location.href=`mailto:info@cesenergy.co.zm?subject=${encodeURIComponent('Inquiry: '+name)}`;
+}
+
+/* ─────────────────────────────────────────────
+   RENDER TABLES
+───────────────────────────────────────────── */
+function renderTable(tableId, filterCat){
+  const items = machines.filter(m=>m.filterCat===filterCat);
+  const col = getColor(items[0]||{filterCat,color:'green'});
+  const table = document.getElementById(tableId);
+  if(!table) return;
+  table.innerHTML=`
+    <thead><tr>
+      <th>Machine</th><th>Category</th><th>Power</th><th>Key Benefits</th><th>Action</th>
+    </tr></thead>
+    <tbody>${items.map(m=>`
+      <tr onclick="openModal('${m.id}')" style="cursor:pointer">
+        <td><strong>${m.icon} ${m.name}</strong><br><span style="font-size:0.72rem;color:var(--text-light)">${m.size} · ${m.pueRole.substring(0,50)}…</span></td>
+        <td><span class="spec-pill ${col}" style="white-space:nowrap">${m.category}</span></td>
+        <td><span class="spec-pill ${m.kw===0?'yellow':col}">${kwLabel(m.kw)}</span></td>
+        <td>${m.benefits.map(b=>`<span class="benefit-tag">${b}</span>`).join('')}</td>
+        <td><button class="btn-inquire" onclick="event.stopPropagation();inquire('${m.name}')">Inquire</button></td>
+      </tr>`).join('')}
+    </tbody>`;
+}
+
+function renderFoodTable(){
+  const items = machines.filter(m=>m.filterCat==='food'||m.filterCat==='transport');
+  const col = 'purple';
+  const table = document.getElementById('foodTable');
+  if(!table) return;
+  table.innerHTML=`
+    <thead><tr>
+      <th>Machine</th><th>Category</th><th>Power</th><th>Key Benefits</th><th>Action</th>
+    </tr></thead>
+    <tbody>${items.map(m=>`
+      <tr onclick="openModal('${m.id}')" style="cursor:pointer">
+        <td><strong>${m.icon} ${m.name}</strong><br><span style="font-size:0.72rem;color:var(--text-light)">${m.size} · ${m.pueRole.substring(0,50)}…</span></td>
+        <td><span class="spec-pill ${col}" style="white-space:nowrap">${m.category}</span></td>
+        <td><span class="spec-pill ${m.kw===0?'yellow':col}">${kwLabel(m.kw)}</span></td>
+        <td>${m.benefits.map(b=>`<span class="benefit-tag">${b}</span>`).join('')}</td>
+        <td><button class="btn-inquire" onclick="event.stopPropagation();inquire('${m.name}')">Inquire</button></td>
+      </tr>`).join('')}
+    </tbody>`;
+}
+
+/* ─────────────────────────────────────────────
+   MODAL
+───────────────────────────────────────────── */
+let currentMachine=null;
+
+async function openModal(id){
+  const m = machines.find(x=>x.id===id);
+  if(!m) return;
+  currentMachine=m;
+  const col = getColor(m);
+
+  document.getElementById('mIcon').className=`modal-header-icon ${col}`;
+  document.getElementById('mIcon').textContent=m.icon;
+  document.getElementById('mCat').className=`modal-cat ${col}`;
+  document.getElementById('mCat').textContent=m.category;
+  document.getElementById('mTitle').textContent=m.name;
+
+  document.getElementById('mSpecRow').innerHTML=`
+    <div class="modal-spec-chip power ${col}">⚡ ${kwLabel(m.kw)} · ${m.size}</div>`;
+
+  document.getElementById('mBenefits').innerHTML=m.benefits.map(b=>`
+    <li><span class="mbl-dot ${col}">✓</span><span>${b}</span></li>`).join('');
+
+  document.getElementById('mIOGrid').innerHTML=`
+    <div class="modal-io-box">
+      <div class="modal-io-box-title">📥 Inputs</div>
+      ${m.inputs.map(i=>`<span class="modal-io-tag">${i}</span>`).join('')}
+    </div>
+    <div class="modal-io-box">
+      <div class="modal-io-box-title">📤 Outputs</div>
+      ${m.outputs.map(o=>`<span class="modal-io-tag">${o}</span>`).join('')}
+    </div>`;
+
+  document.getElementById('mImpact').innerHTML=`<p>${m.impact}</p>`;
+  document.getElementById('mFooterNote').textContent=`${m.pueRole} · Stakeholder: ${m.stakeholder.substring(0,60)}…`;
+  document.getElementById('mInquireBtn').onclick=()=>inquire(m.name);
+
+  document.getElementById('mSpecTable').innerHTML=`
+    <table style="width:100%;font-size:0.81rem;border-collapse:collapse">
+      ${[
+        ['Power',kwLabel(m.kw)],
+        ['Size Class',m.size],
+        ['Category',m.category],
+        ['Inputs',m.inputs.join(', ')],
+        ['Outputs',m.outputs.join(', ')],
+        ['PUE Role',m.pueRole],
+        ['Stakeholder Value',m.stakeholder],
+      ].map(([k,v])=>`
+      <tr>
+        <td style="padding:7px 10px;color:var(--text-light);font-weight:600;font-size:0.7rem;text-transform:uppercase;letter-spacing:.06em;width:36%;border-bottom:1px solid #F5F5F5">${k}</td>
+        <td style="padding:7px 10px;font-weight:500;border-bottom:1px solid #F5F5F5">${v}</td>
+      </tr>`).join('')}
+    </table>`;
+
+  resetGallery();
+  document.getElementById('mDescription').innerHTML=`<div class="modal-ai-loading"><div class="spinner ${col}"></div><span>Generating description…</span></div>`;
+  document.getElementById('mUseCases').innerHTML=`<div class="modal-ai-loading"><div class="spinner ${col}"></div><span>Generating use cases…</span></div>`;
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+
+  fetchImages(m,col);
+  fetchAIContent(m,col);
+}
+
+function closeModal(){
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow='';
+  currentMachine=null;
+}
+function handleOverlayClick(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+/* ─────────────────────────────────────────────
+   GALLERY
+───────────────────────────────────────────── */
+let galleryImages=[];
+
+function resetGallery(){
+  galleryImages=[];
+  document.getElementById('galleryMain').innerHTML='<div class="img-skeleton"></div>';
+  document.getElementById('galleryThumbs').innerHTML='';
+  document.getElementById('gallerySource').textContent='Loading images…';
+}
+
+async function fetchImages(m,col){
+  try{
+    const resp = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',max_tokens:1000,
+        tools:[{type:'web_search_20250305',name:'web_search'}],
+        messages:[{role:'user',content:`Search for real product images of a "${m.name}" machine used in ${m.category} in Africa or small-scale agriculture. Find 3 direct image URLs (ending in .jpg, .jpeg, or .png). Return ONLY a JSON array: [{"url":"...","caption":"..."},{"url":"...","caption":"..."},{"url":"...","caption":"..."}]. No other text.`}]
+      })
+    });
+    const data = await resp.json();
+    const text = data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
+    const m2 = text.match(/\[[\s\S]*?\]/);
+    if(m2){renderGallery(JSON.parse(m2[0]),col);}
+    else{renderFallbackGallery(currentMachine);}
+  }catch(e){renderFallbackGallery(currentMachine);}
+}
+
+function renderGallery(imgs,col){
+  if(!imgs||!imgs.length){renderFallbackGallery(currentMachine);return;}
+  galleryImages=imgs;
+  const main=document.getElementById('galleryMain');
+  main.innerHTML='';
+  const img=document.createElement('img');
+  img.src=imgs[0].url;img.alt=imgs[0].caption||'';
+  img.onerror=()=>{main.innerHTML=fallbackImgHTML(currentMachine);};
+  main.appendChild(img);
+  const thumbs=document.getElementById('galleryThumbs');
+  thumbs.innerHTML='';
+  imgs.forEach((im,i)=>{
+    const t=document.createElement('div');
+    t.className=`gallery-thumb${i===0?' active '+col:''}`;
+    const sk=document.createElement('div');sk.className='img-skeleton';t.appendChild(sk);
+    const ti=document.createElement('img');ti.src=im.url;ti.alt=im.caption||'';
+    ti.onload=()=>sk.remove();ti.onerror=()=>{t.style.display='none';};
+    t.appendChild(ti);
+    t.addEventListener('click',()=>selectThumb(i,col,imgs));
+    thumbs.appendChild(t);
+  });
+  document.getElementById('gallerySource').textContent=imgs[0].caption||'Product image';
+}
+
+function selectThumb(i,col,imgs){
+  document.querySelectorAll('.gallery-thumb').forEach((t,idx)=>{
+    t.className=`gallery-thumb${idx===i?' active '+col:''}`;
+  });
+  const main=document.getElementById('galleryMain');
+  main.innerHTML='<div class="img-skeleton"></div>';
+  const img=document.createElement('img');img.src=imgs[i].url;img.alt=imgs[i].caption||'';
+  img.onload=()=>main.querySelector('.img-skeleton')?.remove();
+  img.onerror=()=>{main.innerHTML=fallbackImgHTML(currentMachine);};
+  main.appendChild(img);
+  document.getElementById('gallerySource').textContent=imgs[i].caption||'Product image';
+}
+
+function fallbackImgHTML(m){
+  const col=getColor(m);
+  const bg={green:'#E8F5E9',blue:'#E3F2FD',orange:'#FFF3E0',purple:'#F3E5F5',teal:'#E0F2F1'}[col]||'#F5F5F5';
+  return `<div style="width:100%;height:100%;min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:${bg}"><div style="font-size:4.2rem">${m.icon}</div><div style="font-size:0.8rem;color:#888;text-align:center;padding:0 20px">${m.name}</div></div>`;
+}
+function renderFallbackGallery(m){
+  if(!m)return;
+  document.getElementById('galleryMain').innerHTML=fallbackImgHTML(m);
+  document.getElementById('galleryThumbs').innerHTML='';
+  document.getElementById('gallerySource').textContent='Add product photos for this machine';
+}
+
+/* ─────────────────────────────────────────────
+   AI DESCRIPTION & USE CASES
+───────────────────────────────────────────── */
+async function fetchAIContent(m,col){
+  try{
+    const resp = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',max_tokens:800,
+        messages:[{role:'user',content:`You are writing catalog content for the Zambia Technology Roadshow. For the machine "${m.name}" (category: ${m.category}, power: ${kwLabel(m.kw)}), respond ONLY with valid JSON (no markdown): {"description":"2 practical sentences about what this machine does and why it benefits Zambian farmers/entrepreneurs.","useCases":[{"emoji":"🌾","label":"Small-scale farmer"},{"emoji":"🏪","label":"Rural enterprise"},{"emoji":"🤝","label":"Cooperative"},{"emoji":"💼","label":"Agri entrepreneur"}]}`}]
+      })
+    });
+    const data=await resp.json();
+    const text=data.content.filter(b=>b.type==='text').map(b=>b.text).join('').replace(/```json|```/g,'').trim();
+    const parsed=JSON.parse(text);
+    document.getElementById('mDescription').innerHTML=`<p>${parsed.description}</p>`;
+    document.getElementById('mUseCases').innerHTML=parsed.useCases.map(u=>`<div class="use-case-chip"><span>${u.emoji}</span>${u.label}</div>`).join('');
+  }catch(e){
+    document.getElementById('mDescription').innerHTML=`<p><strong>${m.name}</strong> is a ${m.size.toLowerCase()}-scale productive appliance in the ${m.category} sector. It connects electricity access directly to rural livelihoods, supporting ${m.stakeholder.toLowerCase()}</p>`;
+    document.getElementById('mUseCases').innerHTML=`
+      <div class="use-case-chip"><span>🌾</span>Small-scale farmer</div>
+      <div class="use-case-chip"><span>🏪</span>Rural enterprise</div>
+      <div class="use-case-chip"><span>🤝</span>Cooperative</div>
+      <div class="use-case-chip"><span>💼</span>Agri entrepreneur</div>`;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   INIT
+───────────────────────────────────────────── */
+buildPartnerBanner();
+buildPartnersGrid();
+renderCards('all');
+renderTable('agroTable','agro');
+renderTable('coldTable','cold');
+renderTable('workshopTable','workshop');
+renderFoodTable();
+</script>
+</body>
+</html>
