@@ -69,7 +69,20 @@ nav{
 .nav-links a:hover{color:var(--yellow);}
 .nav-cta{background:var(--yellow);color:var(--green);font-weight:700;font-size:0.8rem;padding:8px 20px;border-radius:50px;text-decoration:none;letter-spacing:0.04em;transition:transform .15s,background .15s;}
 .nav-cta:hover{background:var(--yellow-dark);transform:translateY(-1px);}
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between logo and text */
+}
 
+.logo-img {
+  height: 30px;      /* Set a fixed height that fits your nav bar */
+  width: auto;       /* Maintains the aspect ratio */
+  display: block;
+}
+
+/* Optional: If you want to hide the text and only show the logos */
+/* .logo-box { font-size: 0; } */
 /* ══ HERO ════════════════════════════════════════════ */
 .hero{background:linear-gradient(135deg,var(--green) 0%,#2E7D32 55%,#1B5E20 100%);padding:80px 5% 0;position:relative;overflow:hidden;min-height:540px;display:flex;align-items:flex-end;}
 .hero-bg-pattern{position:absolute;inset:0;background-image:radial-gradient(circle at 80% 20%,rgba(251,192,45,0.12) 0%,transparent 50%),radial-gradient(circle at 10% 80%,rgba(251,192,45,0.08) 0%,transparent 40%);pointer-events:none;}
@@ -371,9 +384,15 @@ footer .foot-copy{color:rgba(255,255,255,0.3);font-size:0.72rem;}
 <!-- ══ NAV ══════════════════════════════════════════════ -->
 <nav>
   <div class="nav-logos">
-    <div class="logo-box"><span class="logo-icon">🌍</span>Rockefeller Foundation</div>
-    <div class="logo-box"><span class="logo-icon">⚡</span>Customized Energy Solutions</div>
+  <div class="logo-box">
+    <img src="images/logos/rockerfeller.png" alt="Rockefeller Foundation" class="logo-img">
+    Rockefeller Foundation
   </div>
+  <div class="logo-box">
+    <img src="images/logos/ces-logo-2.png" alt="Customized Energy Solutions" class="logo-img">
+    Customized Energy Solutions
+  </div>
+</div>
   <div class="nav-links">
     <a href="#catalog">Catalog</a>
     <a href="#processing">Processing</a>
@@ -405,10 +424,12 @@ footer .foot-copy{color:rgba(255,255,255,0.3);font-size:0.72rem;}
     </div>
     <div class="hero-visual">
       <div class="hero-image-frame">
-        <div class="hero-img-placeholder">
-          <div class="hero-img-icon">⚙️</div>
-          <div class="hero-img-label">Agri-Processing Machinery</div>
-        </div>
+         <img
+          src="images/oil-expeller.jpg"
+          alt="Oil Expeller — Agri-Processing Machinery"
+          style="width:100%;height:100%;object-fit:cover;display:block;border-radius:20px 20px 0 0;"
+          onerror="this.parentElement.innerHTML='<div class=\'hero-img-placeholder\'><div class=\'hero-img-icon\'>⚙️</div><div class=\'hero-img-label\'>Agri-Processing Machinery</div></div>'"
+        />
       </div>
       <div class="hero-floating-card">
         <div class="hfc-label">Anchor Load</div>
@@ -436,7 +457,7 @@ footer .foot-copy{color:rgba(255,255,255,0.3);font-size:0.72rem;}
     <button class="filter-tab active" data-filter="all">All</button>
     <button class="filter-tab" data-filter="agro">🌾 Agro-Processing</button>
     <button class="filter-tab blue" data-filter="cold">❄️ Cold Chain</button>
-    <button class="filter-tab orange" data-filter="workshop">🔧 Workshop</button>
+    <button class="filter-tab orange" data-filter="workshop">🔧 Workshop &amp; Tools</button>
     <button class="filter-tab purple" data-filter="food">🍽️ Food &amp; Cooking</button>
     <button class="filter-tab teal" data-filter="transport">🚲 Transport</button>
   </div>
@@ -455,8 +476,8 @@ footer .foot-copy{color:rgba(255,255,255,0.3);font-size:0.72rem;}
     <div class="table-header">
       <div>
         <div class="section-label green" style="color:var(--green-light);"><span style="background:var(--green);display:block;width:26px;height:3px;border-radius:2px;"></span>Category 1</div>
-        <h2 class="section-title" style="color:var(--green)">Agro-Processing Machinery</h2>
-        <p class="section-desc" style="max-width:500px">High-ROI processing equipment for grain milling, oil extraction, feed mixing, and crop preparation.</p>
+        <h2 class="section-title" style="color:var(--green)">Agro-Processing &amp; Irrigation</h2>
+        <p class="section-desc" style="max-width:500px">Grain milling, oil extraction, feed mixing, food processing, and solar irrigation solutions for high-ROI rural enterprises.</p>
       </div>
       <span class="table-tag green">🌾 Anchor Loads · High ROI</span>
     </div>
@@ -476,8 +497,8 @@ footer .foot-copy{color:rgba(255,255,255,0.3);font-size:0.72rem;}
     <div class="table-header">
       <div>
         <div class="section-label blue" style="color:var(--blue);"><span style="background:var(--blue);display:block;width:26px;height:3px;border-radius:2px;"></span>Category 2</div>
-        <h2 class="section-title" style="color:var(--blue)">Cold Chain &amp; Refrigeration</h2>
-        <p class="section-desc" style="max-width:500px">Preserve produce longer, reduce post-harvest losses, and unlock higher-value markets with reliable cold storage.</p>
+        <h2 class="section-title" style="color:var(--blue)">Cold Chain, Water &amp; Post-Harvest</h2>
+        <p class="section-desc" style="max-width:500px">Preserve produce longer, reduce post-harvest losses, and unlock higher-value markets — including solar dryers, dehumidifiers, and water ATMs.</p>
       </div>
       <span class="table-tag blue">❄️ Reduce Post-Harvest Loss</span>
     </div>
@@ -497,8 +518,8 @@ footer .foot-copy{color:rgba(255,255,255,0.3);font-size:0.72rem;}
     <div class="table-header">
       <div>
         <div class="section-label orange" style="color:var(--orange);"><span style="background:var(--orange);display:block;width:26px;height:3px;border-radius:2px;"></span>Category 3</div>
-        <h2 class="section-title" style="color:var(--orange)">Workshop, Carpentry &amp; Manufacturing</h2>
-        <p class="section-desc" style="max-width:500px">Tools for rural fabrication, repair, and light manufacturing that create skilled employment and support local infrastructure.</p>
+        <h2 class="section-title" style="color:var(--orange)">Workshop, Textiles &amp; Carpentry</h2>
+        <p class="section-desc" style="max-width:500px">Tools for rural fabrication, repair, light manufacturing, garment production, poultry, and carpentry — creating skilled jobs and supporting local enterprises.</p>
       </div>
       <span class="table-tag orange">🔧 Skilled Jobs · Diversification</span>
     </div>
@@ -984,8 +1005,8 @@ const machines = [
   // ── TRANSPORT ────────────────────────────────────────
   {
     id:'eb1', filterCat:'transport', color:'teal', icon:'🚲',
-    folder:'e-bike-charger', imageCount:3,
-    name:'E-Bike Charger', category:'Transport',
+    folder:'e-bike', imageCount:3,
+    name:'E-Bike', category:'Transport',
     kw:0.6, size:'Small',
     inputs:['Electricity','E-bike batteries'],
     outputs:['Charged batteries'],
@@ -993,6 +1014,248 @@ const machines = [
     impact:'Allows rural entrepreneurs to run electric motorcycle or delivery services.',
     pueRole:'Creates new electricity demand through transport electrification.',
     stakeholder:'Supports emerging rural e-mobility markets.'
+  },
+
+  // ══ NEW MACHINES ══════════════════════════════════════
+
+  // ── AGRO-PROCESSING (new) ────────────────────────────
+  {
+    id:'mm1', filterCat:'agro', color:'green', icon:'⚙️',
+    folder:'micro-mill', imageCount:3,
+    name:'Micro Mill', category:'Agro-processing',
+    kw:2.2, size:'Small',
+    inputs:['Maize','Millet','Sorghum','Small grains'],
+    outputs:['Flour','Fine meal'],
+    benefits:['Ideal for village-level milling','Low capital investment','Quick payback period'],
+    impact:'Brings milling services directly to small farming communities, eliminating transport costs and post-harvest losses.',
+    pueRole:'Entry-level anchor appliance for mini-grid agro-processing.',
+    stakeholder:'Highly accessible for first-time rural entrepreneurs and cooperative groups.'
+  },
+  {
+    id:'pm1', filterCat:'agro', color:'green', icon:'🟤',
+    folder:'pellet-making-machine', imageCount:3,
+    name:'Pellet Making Machine', category:'Agro-processing',
+    kw:4.0, size:'Medium',
+    inputs:['Grain bran','Biomass','Crop residues','Soy meal'],
+    outputs:['Pelletised animal feed','Biomass pellets'],
+    benefits:['Converts waste into sellable product','Uniform pellet size for livestock','Reduces feed storage volume'],
+    impact:'Enables farmers to produce standardised animal feed pellets on-site, creating new income streams from crop by-products.',
+    pueRole:'Productive load that utilises agricultural waste and links to livestock value chains.',
+    stakeholder:'Supports poultry, fish, and livestock farmers seeking cost-effective feed solutions.'
+  },
+  {
+    id:'fp1', filterCat:'agro', color:'green', icon:'🥫',
+    folder:'food-processing-machine', imageCount:3,
+    name:'Food Processing Machine', category:'Food processing',
+    kw:3.0, size:'Medium',
+    inputs:['Fruits','Vegetables','Grains','Root crops'],
+    outputs:['Processed food products','Dried goods','Purees'],
+    benefits:['Multi-purpose processing capability','Extends shelf life of produce','Supports value-added food products'],
+    impact:'Allows rural producers to process and package a wide range of local foods, accessing urban and export markets.',
+    pueRole:'Versatile productive appliance supporting multiple food value chains.',
+    stakeholder:'Highly impactful for women-led food processing enterprises and cooperative groups.'
+  },
+  {
+    id:'of1', filterCat:'agro', color:'green', icon:'🫗',
+    folder:'oil-filter', imageCount:3,
+    name:'Oil Filter', category:'Agro-processing',
+    kw:0.75, size:'Small',
+    inputs:['Crude pressed oil'],
+    outputs:['Clarified cooking oil','Oil sediment'],
+    benefits:['Improves oil quality and clarity','Meets retail and food safety standards','Works alongside oil expellers'],
+    impact:'Enables local oil producers to sell premium filtered cooking oil at higher prices in local and urban markets.',
+    pueRole:'Complements oil expeller operations to complete the value chain.',
+    stakeholder:'Directly increases margins for oil processing micro-enterprises.'
+  },
+  {
+    id:'gs1', filterCat:'agro', color:'green', icon:'🥜',
+    folder:'groundnut-desheller', imageCount:3,
+    name:'Groundnut Desheller', category:'Agro-processing',
+    kw:1.5, size:'Small',
+    inputs:['Whole groundnuts in shell'],
+    outputs:['Shelled groundnuts','Groundnut shells'],
+    benefits:['Faster throughput than manual shelling','Preserves kernel quality','Reduces labour cost significantly'],
+    impact:'Saves farmers hours of manual labour, allowing them to process larger volumes and sell graded kernels at better prices.',
+    pueRole:'Entry-level productive appliance with high labour-substitution value.',
+    stakeholder:'Accessible for smallholder farmers and groundnut processing cooperatives.'
+  },
+
+  // ── IRRIGATION (new) — grouped under agro/teal ───────
+  {
+    id:'esp1', filterCat:'agro', color:'teal', icon:'☀️',
+    folder:'enos-solar-pump', imageCount:3,
+    name:"Eno's Solar Pump", category:'Solar Irrigation',
+    kw:0.75, size:'Small',
+    inputs:['Solar energy','Water source'],
+    outputs:['Irrigated crops','Pumped water'],
+    benefits:['Zero fuel cost irrigation','Dry-season farming enabled','Climate-resilient food production'],
+    impact:"Eno's solar-powered pumps allow farmers to irrigate year-round without diesel costs, dramatically improving yields and income.",
+    pueRole:'Direct productive use of solar energy for agricultural output.',
+    stakeholder:'Key partner brand — Eno\'s Solar Pumps. Supports climate-resilient and off-grid farming.'
+  },
+  {
+    id:'jsp1', filterCat:'agro', color:'teal', icon:'💧',
+    folder:'jacana-solar-pump', imageCount:3,
+    name:'Jacana Solar Pump', category:'Solar Irrigation',
+    kw:1.1, size:'Small',
+    inputs:['Solar energy','Water source'],
+    outputs:['Irrigated farmland','Pumped water supply'],
+    benefits:['Reliable solar-powered water supply','Suitable for boreholes and rivers','Remote monitoring capable'],
+    impact:'Jacana solar pumps deliver reliable irrigation to smallholder farmers in off-grid areas, enabling two or more growing seasons per year.',
+    pueRole:'Flagship solar irrigation appliance connecting electricity access to food production.',
+    stakeholder:'Key partner brand — Jacana. High impact for rural food security and income generation.'
+  },
+
+  // ── COLD CHAIN (new) ─────────────────────────────────
+  {
+    id:'dh2', filterCat:'cold', color:'blue', icon:'💨',
+    folder:'dehumidifier', imageCount:3,
+    name:'Dehumidifier', category:'Cold chain',
+    kw:0.5, size:'Small',
+    inputs:['Electricity','Humid air'],
+    outputs:['Dry conditioned air','Condensed water'],
+    benefits:['Prevents mould and grain spoilage','Extends storage life of produce','Protects cold rooms and stores'],
+    impact:'Controls humidity in grain stores and cold rooms, preventing the moisture-driven spoilage that causes up to 30% post-harvest losses.',
+    pueRole:'Supports post-harvest management and cold chain quality control.',
+    stakeholder:'Essential for grain cooperatives, cold rooms, and produce storage facilities.'
+  },
+  {
+    id:'sd2', filterCat:'cold', color:'blue', icon:'🌤️',
+    folder:'solar-dryer', imageCount:3,
+    name:'Solar Dryer', category:'Post-harvest processing',
+    kw:0, size:'Small',
+    inputs:['Solar energy','Fresh produce','Fish','Grains'],
+    outputs:['Dried preserved food'],
+    benefits:['Zero energy cost drying','Hygienic closed-system design','Extends shelf life by weeks'],
+    impact:'Provides farmers with a hygienic, solar-powered way to dry fish, fruits, vegetables, and grains — dramatically reducing post-harvest spoilage.',
+    pueRole:'Non-electric productive appliance that complements energy-powered cold chain.',
+    stakeholder:'Low-cost, high-impact tool for smallholders and fishing communities.'
+  },
+  {
+    id:'wa1', filterCat:'cold', color:'blue', icon:'🚰',
+    folder:'water-atm', imageCount:3,
+    name:'Water ATM', category:'Water services',
+    kw:0.5, size:'Medium',
+    inputs:['Electricity','Purified water supply'],
+    outputs:['Safe drinking water','Revenue from water sales'],
+    benefits:['Community safe water access','Revenue-generating water kiosk','Prepaid smart card system'],
+    impact:'Provides safe, affordable drinking water to rural communities through a coin/card-operated vending system, creating a sustainable water business.',
+    pueRole:'High-utilisation anchor load creating consistent electricity demand and community revenue.',
+    stakeholder:'Strong social and business impact — ideal for community water enterprises and mini-grid anchors.'
+  },
+
+  // ── WORKSHOP (new) ───────────────────────────────────
+  {
+    id:'ei1', filterCat:'workshop', color:'orange', icon:'🐣',
+    folder:'egg-incubator', imageCount:3,
+    name:'Egg Incubator', category:'Poultry & livestock',
+    kw:0.15, size:'Small',
+    inputs:['Electricity','Fertile eggs'],
+    outputs:['Hatched chicks'],
+    benefits:['80%+ hatch rate','Automated temperature & humidity','Supports poultry business startups'],
+    impact:'Allows rural entrepreneurs to hatch and sell chicks locally, building a poultry income stream with minimal capital outlay.',
+    pueRole:'Low-power productive appliance that links electricity to livestock income.',
+    stakeholder:'Popular with women entrepreneurs and youth starting poultry businesses.'
+  },
+  {
+    id:'sf1', filterCat:'workshop', color:'orange', icon:'⚡',
+    folder:'solar-fence', imageCount:3,
+    name:'Solar Fence', category:'Agriculture',
+    kw:0, size:'Small',
+    inputs:['Solar energy'],
+    outputs:['Electric perimeter fence','Crop & livestock protection'],
+    benefits:['Protects crops from wildlife and livestock','Zero grid electricity needed','Low maintenance deterrent'],
+    impact:'Protects farms from wildlife and free-roaming animals, reducing crop losses and enabling farmers to invest more in their fields.',
+    pueRole:'Non-electric solar-powered agricultural protection tool.',
+    stakeholder:'High value for crop farmers in areas with wildlife pressure or open-range livestock.'
+  },
+  {
+    id:'hp1', filterCat:'workshop', color:'orange', icon:'♨️',
+    folder:'heat-pump', imageCount:3,
+    name:'Heat Pump', category:'Processing & drying',
+    kw:1.5, size:'Medium',
+    inputs:['Electricity','Ambient air'],
+    outputs:['Heated or cooled air','Dried products'],
+    benefits:['Energy-efficient heating and drying','Can replace fuel-based dryers','Versatile industrial application'],
+    impact:'Provides efficient, electrically-powered heat for drying, processing, and temperature control in rural enterprises.',
+    pueRole:'Medium-power productive appliance supporting food processing and value-added production.',
+    stakeholder:'Supports agro-processing businesses seeking energy-efficient solutions.'
+  },
+
+  // ── SEWING & TEXTILES (new) — workshop category ──────
+  {
+    id:'psm1', filterCat:'workshop', color:'orange', icon:'🪡',
+    folder:'portable-sewing-machine', imageCount:3,
+    name:'Portable Sewing Machine', category:'Light manufacturing',
+    kw:0.1, size:'Small',
+    inputs:['Fabric','Thread','Electricity'],
+    outputs:['Garments','Textile repairs'],
+    benefits:['Ultra-low power consumption','Portable and lightweight','Ideal for home-based tailoring'],
+    impact:'Empowers women and youth entrepreneurs to start home-based tailoring businesses with very low startup costs.',
+    pueRole:'Ultra-low power productive appliance — ideal for household electricity connections.',
+    stakeholder:'High inclusivity — supports women-led micro-enterprises and youth employment.'
+  },
+  {
+    id:'em1', filterCat:'workshop', color:'orange', icon:'🎨',
+    folder:'embroidery-machine', imageCount:3,
+    name:'Embroidery Machine', category:'Light manufacturing',
+    kw:0.4, size:'Small',
+    inputs:['Fabric','Embroidery thread','Electricity'],
+    outputs:['Embroidered garments','Branded textile products'],
+    benefits:['High-value product differentiation','Automated pattern production','Supports premium textile markets'],
+    impact:'Allows tailors and textile businesses to produce premium embroidered products, accessing higher-margin markets in hospitality, schools, and retail.',
+    pueRole:'Productive appliance that elevates the value of light manufacturing enterprises.',
+    stakeholder:'Strong potential for export-quality and branded apparel businesses.'
+  },
+  {
+    id:'ssm1', filterCat:'workshop', color:'orange', icon:'🧵',
+    folder:'straight-sewing-machine', imageCount:3,
+    name:'Straight Sewing Machine', category:'Light manufacturing',
+    kw:0.3, size:'Small',
+    inputs:['Fabric','Thread','Electricity'],
+    outputs:['Sewn garments','Bags','Uniforms'],
+    benefits:['Industry standard for garment production','Durable and reliable','Fast stitching speed'],
+    impact:'The workhorse of any tailoring business — enables consistent, high-quality garment production for schools, workwear, and fashion.',
+    pueRole:'Core productive appliance for electrified tailoring and textile workshops.',
+    stakeholder:'Essential machine for established and growing tailoring businesses.'
+  },
+  {
+    id:'ol1', filterCat:'workshop', color:'orange', icon:'🔀',
+    folder:'overlocking-machine', imageCount:3,
+    name:'Overlocking Machine', category:'Light manufacturing',
+    kw:0.3, size:'Small',
+    inputs:['Fabric','Overlock thread','Electricity'],
+    outputs:['Finished garment edges','Professional seams'],
+    benefits:['Professional garment finishing','Prevents fabric fraying','Works alongside straight machines'],
+    impact:'Gives tailoring businesses the ability to produce professionally finished garments that meet retail and export quality standards.',
+    pueRole:'Companion productive appliance to sewing machines in textile micro-enterprises.',
+    stakeholder:'Enables quality differentiation for tailoring businesses targeting formal markets.'
+  },
+
+  // ── CARPENTRY (new) ──────────────────────────────────
+  {
+    id:'ws1', filterCat:'workshop', color:'orange', icon:'🔲',
+    folder:'wood-sander', imageCount:3,
+    name:'Wood Sander', category:'Carpentry',
+    kw:0.75, size:'Small',
+    inputs:['Rough wood surfaces'],
+    outputs:['Smooth finished wood'],
+    benefits:['Consistent surface finish quality','Faster than manual sanding','Suitable for furniture and doors'],
+    impact:'Improves the quality and finish of locally-made furniture and carpentry products, enabling carpenters to compete with imported goods.',
+    pueRole:'Productive workshop appliance supporting rural furniture manufacturing.',
+    stakeholder:'Supports carpenters and furniture makers to access higher-value markets.'
+  },
+  {
+    id:'ms1', filterCat:'workshop', color:'orange', icon:'🔪',
+    folder:'mitre-saw', imageCount:3,
+    name:'Mitre Saw', category:'Carpentry',
+    kw:1.5, size:'Medium',
+    inputs:['Timber','Wood boards'],
+    outputs:['Precisely angled cuts','Framing components','Furniture parts'],
+    benefits:['Precise angle and cross-cutting','Speeds up carpentry production','Professional quality results'],
+    impact:'Allows rural carpenters and contractors to produce precision timber cuts for furniture, roofing, and building construction — dramatically improving quality and speed.',
+    pueRole:'High-value workshop appliance supporting rural construction and manufacturing.',
+    stakeholder:'Critical tool for carpentry businesses targeting building contractors and furniture retailers.'
   },
 ];
 
@@ -1263,7 +1526,7 @@ function resetGallery(){
 
 function fetchImages(m, col){
   if(!m.folder){ renderFallbackGallery(m); return; }
-  const count = m.imageCount || 3;
+  const count = m.imageCount || 5;
   const exts = ['jpg','jpeg','png','webp','avif'];
   const candidates = [];
   for(let i=1;i<=count;i++) exts.forEach(e=>candidates.push(`images/machines/${m.folder}/${i}.${e}`));
