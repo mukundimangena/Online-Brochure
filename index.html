@@ -132,6 +132,16 @@ nav{
 .tech-card:hover{transform:translateY(-5px);box-shadow:0 14px 42px rgba(27,94,32,0.17);}
 .card-click-hint{position:absolute;top:11px;right:11px;background:rgba(0,0,0,0.06);color:var(--text-light);font-size:0.62rem;font-weight:600;letter-spacing:0.06em;padding:3px 9px;border-radius:20px;opacity:0;transition:opacity .2s;pointer-events:none;}
 .tech-card:hover .card-click-hint{opacity:1;}
+.card-image{width:100%;height:160px;overflow:hidden;position:relative;background:var(--grey);}
+.card-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease;}
+.tech-card:hover .card-image img{transform:scale(1.05);}
+.card-image-fallback{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:2.8rem;}
+.card-image-fallback span.fallback-label{font-size:0.72rem;color:var(--text-light);font-weight:500;}
+.card-image.green .card-image-fallback{background:rgba(27,94,32,0.07);}
+.card-image.blue .card-image-fallback{background:rgba(2,119,189,0.07);}
+.card-image.orange .card-image-fallback{background:rgba(230,81,0,0.07);}
+.card-image.purple .card-image-fallback{background:rgba(106,27,154,0.07);}
+.card-image.teal .card-image-fallback{background:rgba(0,105,92,0.07);}
 .card-top{padding:20px 20px 14px;display:flex;align-items:flex-start;gap:14px;}
 .card-icon{width:52px;height:52px;flex-shrink:0;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.7rem;}
 .card-icon.green{background:rgba(27,94,32,0.09);}
@@ -422,13 +432,13 @@ footer .foot-copy{color:rgba(255,255,255,0.3);font-size:0.72rem;}
     <h2 class="section-title" style="color:var(--green)">All Technologies on Show</h2>
     <p class="section-desc">Click any card to see images, full specifications, inputs/outputs, and community impact. Filter by category below.</p>
   </div>
-  <div class="filter-tabs">
-    <button class="filter-tab active" onclick="filterCards('all',this)">All</button>
-    <button class="filter-tab" onclick="filterCards('agro',this)">🌾 Agro-Processing</button>
-    <button class="filter-tab blue" onclick="filterCards('cold',this)">❄️ Cold Chain</button>
-    <button class="filter-tab orange" onclick="filterCards('workshop',this)">🔧 Workshop</button>
-    <button class="filter-tab purple" onclick="filterCards('food',this)">🍽️ Food &amp; Cooking</button>
-    <button class="filter-tab teal" onclick="filterCards('transport',this)">🚲 Transport</button>
+  <div class="filter-tabs" id="filterTabs">
+    <button class="filter-tab active" data-filter="all">All</button>
+    <button class="filter-tab" data-filter="agro">🌾 Agro-Processing</button>
+    <button class="filter-tab blue" data-filter="cold">❄️ Cold Chain</button>
+    <button class="filter-tab orange" data-filter="workshop">🔧 Workshop</button>
+    <button class="filter-tab purple" data-filter="food">🍽️ Food &amp; Cooking</button>
+    <button class="filter-tab teal" data-filter="transport">🚲 Transport</button>
   </div>
   <div class="tech-grid" id="techGrid"></div>
 </section>
@@ -545,11 +555,11 @@ footer .foot-copy{color:rgba(255,255,255,0.3);font-size:0.72rem;}
 <section id="contact" class="cta-strip">
   <h2>Ready to Transform Your Farm Business?</h2>
   <p>Speak with a technology advisor at the Roadshow. Live demonstrations available.</p>
-  <a href="mailto:info@cesenergy.co.zm" class="btn-primary">📞 Inquire Now</a>
+  <a href="/cdn-cgi/l/email-protection#f49d9a929bb4979187919a9186938dda979bda8e99" class="btn-primary">📞 Inquire Now</a>
   <div class="contact-grid">
     <div class="contact-item"><div class="contact-item-icon">📍</div><div class="contact-item-label">Location</div><div class="contact-item-value">Lusaka, Zambia</div></div>
     <div class="contact-item"><div class="contact-item-icon">📞</div><div class="contact-item-label">Phone</div><div class="contact-item-value">+260 (0) 211 000 000</div></div>
-    <div class="contact-item"><div class="contact-item-icon">✉️</div><div class="contact-item-label">Email</div><div class="contact-item-value">info@cesenergy.co.zm</div></div>
+    <div class="contact-item"><div class="contact-item-icon">✉️</div><div class="contact-item-label">Email</div><div class="contact-item-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d7beb9b1b897b4b2a4b2b9b2a5b0aef9b4b8f9adba">[email&#160;protected]</a></div></div>
     <div class="contact-item"><div class="contact-item-icon">🕐</div><div class="contact-item-label">Hours</div><div class="contact-item-value">Mon–Fri 8AM–5PM CAT</div></div>
   </div>
 </section>
@@ -624,7 +634,7 @@ footer .foot-copy{color:rgba(255,255,255,0.3);font-size:0.72rem;}
 </div>
 
 <!-- ══ SCRIPTS ════════════════════════════════════════════ -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ─────────────────────────────────────────────
    PARTNERS DATA
 ───────────────────────────────────────────── */
@@ -646,6 +656,7 @@ const machines = [
   // ── AGRO-PROCESSING ──────────────────────────────────
   {
     id:'hm1', filterCat:'agro', color:'green', icon:'⚙️',
+    folder:'hammer-mill', imageCount:3,
     name:'Hammer Mill', category:'Agro-processing',
     kw:5.6, size:'Medium',
     inputs:['Maize','Millet','Sorghum','Grains'],
@@ -657,6 +668,7 @@ const machines = [
   },
   {
     id:'dh1', filterCat:'agro', color:'green', icon:'🌾',
+    folder:'dehuller', imageCount:3,
     name:'Dehuller', category:'Agro-processing',
     kw:11.2, size:'Medium',
     inputs:['Rice','Maize','Grains'],
@@ -668,6 +680,7 @@ const machines = [
   },
   {
     id:'oe1', filterCat:'agro', color:'green', icon:'🫙',
+    folder:'oil-expeller', imageCount:3,
     name:'Oil Expeller', category:'Agro-processing',
     kw:14.9, size:'Large',
     inputs:['Sunflower seeds','Groundnuts','Soybeans'],
@@ -679,6 +692,7 @@ const machines = [
   },
   {
     id:'pb1', filterCat:'agro', color:'green', icon:'🥜',
+    folder:'peanut-butter-machine', imageCount:3,
     name:'Peanut Butter Machine', category:'Food processing',
     kw:1.2, size:'Small',
     inputs:['Roasted peanuts'],
@@ -690,6 +704,7 @@ const machines = [
   },
   {
     id:'fm1', filterCat:'agro', color:'green', icon:'🐄',
+    folder:'feed-mixer', imageCount:3,
     name:'Feed Mixer', category:'Agro-processing',
     kw:4.1, size:'Medium',
     inputs:['Grain bran','Soy meal','Additives'],
@@ -701,6 +716,7 @@ const machines = [
   },
   {
     id:'gd1', filterCat:'agro', color:'green', icon:'🥜',
+    folder:'groundnut-decorticator', imageCount:3,
     name:'Groundnut Decorticator', category:'Agro-processing',
     kw:2.2, size:'Small',
     inputs:['Groundnuts'],
@@ -712,6 +728,7 @@ const machines = [
   },
   {
     id:'ip1', filterCat:'agro', color:'teal', icon:'💧',
+    folder:'irrigation-pump', imageCount:3,
     name:'Irrigation Pump', category:'Agriculture',
     kw:2.2, size:'Small',
     inputs:['Water','Electricity'],
@@ -724,6 +741,7 @@ const machines = [
   // ── COLD CHAIN ───────────────────────────────────────
   {
     id:'df1', filterCat:'cold', color:'blue', icon:'🧊',
+    folder:'deep-freezer', imageCount:3,
     name:'Deep Freezer', category:'Cold chain',
     kw:0.4, size:'Small',
     inputs:['Electricity','Food products'],
@@ -735,6 +753,7 @@ const machines = [
   },
   {
     id:'rf1', filterCat:'cold', color:'blue', icon:'❄️',
+    folder:'refrigerator', imageCount:3,
     name:'Refrigerator', category:'Cold chain',
     kw:0.25, size:'Small',
     inputs:['Electricity','Food and drinks'],
@@ -746,6 +765,7 @@ const machines = [
   },
   {
     id:'im1', filterCat:'cold', color:'blue', icon:'🧊',
+    folder:'ice-maker', imageCount:3,
     name:'Ice Maker', category:'Cold chain',
     kw:3, size:'Medium',
     inputs:['Water','Electricity'],
@@ -757,6 +777,7 @@ const machines = [
   },
   {
     id:'cr1', filterCat:'cold', color:'blue', icon:'🥬',
+    folder:'small-cold-room', imageCount:3,
     name:'Small Cold Room', category:'Cold chain',
     kw:8, size:'Large',
     inputs:['Electricity','Perishable goods'],
@@ -769,6 +790,7 @@ const machines = [
   // ── WORKSHOP & MANUFACTURING ─────────────────────────
   {
     id:'wm1', filterCat:'workshop', color:'orange', icon:'🔩',
+    folder:'welding-machine', imageCount:3,
     name:'Welding Machine', category:'Metal work',
     kw:5, size:'Medium',
     inputs:['Metal rods','Steel structures'],
@@ -780,6 +802,7 @@ const machines = [
   },
   {
     id:'sm1', filterCat:'workshop', color:'orange', icon:'🪡',
+    folder:'sewing-machine', imageCount:3,
     name:'Sewing Machine', category:'Light manufacturing',
     kw:0.3, size:'Small',
     inputs:['Fabric','Thread'],
@@ -791,6 +814,7 @@ const machines = [
   },
   {
     id:'ac1', filterCat:'workshop', color:'orange', icon:'🌬️',
+    folder:'air-compressor', imageCount:3,
     name:'Air Compressor', category:'Workshop',
     kw:2, size:'Medium',
     inputs:['Electricity'],
@@ -802,6 +826,7 @@ const machines = [
   },
   {
     id:'os1', filterCat:'workshop', color:'orange', icon:'🪵',
+    folder:'orbital-saw', imageCount:3,
     name:'Orbital Saw', category:'Carpentry',
     kw:1, size:'Small',
     inputs:['Wood'],
@@ -813,6 +838,7 @@ const machines = [
   },
   {
     id:'pl1', filterCat:'workshop', color:'orange', icon:'🪚',
+    folder:'planer', imageCount:3,
     name:'Planer (Woodworking)', category:'Carpentry',
     kw:1.5, size:'Medium',
     inputs:['Rough wood boards'],
@@ -824,6 +850,7 @@ const machines = [
   },
   {
     id:'sd1', filterCat:'workshop', color:'orange', icon:'🔨',
+    folder:'sander', imageCount:3,
     name:'Sander', category:'Carpentry',
     kw:0.5, size:'Small',
     inputs:['Wood surfaces'],
@@ -835,6 +862,7 @@ const machines = [
   },
   {
     id:'ag1', filterCat:'workshop', color:'orange', icon:'⚙️',
+    folder:'angle-grinder', imageCount:3,
     name:'Angle Grinder', category:'Workshop',
     kw:1, size:'Small',
     inputs:['Metal or construction materials'],
@@ -846,6 +874,7 @@ const machines = [
   },
   {
     id:'dm1', filterCat:'workshop', color:'orange', icon:'🔧',
+    folder:'drilling-machine', imageCount:3,
     name:'Drilling Machine', category:'Workshop',
     kw:0.8, size:'Small',
     inputs:['Metal, wood or masonry surfaces'],
@@ -858,6 +887,7 @@ const machines = [
   // ── FOOD RETAIL, COOKING & TRANSPORT ────────────────
   {
     id:'fz1', filterCat:'food', color:'purple', icon:'🧃',
+    folder:'freezits-machine', imageCount:3,
     name:'Freezits Machine', category:'Food retail',
     kw:1.5, size:'Small',
     inputs:['Juice mix','Water'],
@@ -869,6 +899,7 @@ const machines = [
   },
   {
     id:'pc1', filterCat:'food', color:'purple', icon:'🍿',
+    folder:'popcorn-machine', imageCount:3,
     name:'Popcorn Machine', category:'Food retail',
     kw:1.2, size:'Small',
     inputs:['Maize kernels','Oil'],
@@ -880,6 +911,7 @@ const machines = [
   },
   {
     id:'fc1', filterCat:'food', color:'purple', icon:'🛒',
+    folder:'food-storage-cart', imageCount:3,
     name:'Food Storage Cart', category:'Food retail infrastructure',
     kw:0, size:'Small',
     inputs:['Fresh produce','Packaged food items'],
@@ -891,6 +923,7 @@ const machines = [
   },
   {
     id:'ep1', filterCat:'food', color:'purple', icon:'🫕',
+    folder:'electrical-pressure-cooker', imageCount:3,
     name:'Electrical Pressure Cooker', category:'Cooking appliance',
     kw:1.3, size:'Small',
     inputs:['Electricity','Food ingredients','Water'],
@@ -902,6 +935,7 @@ const machines = [
   },
   {
     id:'ic1', filterCat:'food', color:'purple', icon:'🍳',
+    folder:'induction-cooktop', imageCount:3,
     name:'Induction Cooktop', category:'Cooking appliance',
     kw:1.8, size:'Small',
     inputs:['Electricity','Cooking utensils','Food ingredients'],
@@ -913,6 +947,7 @@ const machines = [
   },
   {
     id:'bg1', filterCat:'food', color:'teal', icon:'🔥',
+    folder:'biogas-cookstove', imageCount:3,
     name:'Biogas Cookstove', category:'Clean cooking',
     kw:0, size:'Small',
     inputs:['Biogas fuel'],
@@ -924,6 +959,7 @@ const machines = [
   },
   {
     id:'cs1', filterCat:'food', color:'teal', icon:'🪵',
+    folder:'improved-cookstove', imageCount:3,
     name:'Improved Cookstove', category:'Clean cooking',
     kw:0, size:'Small',
     inputs:['Biomass fuel'],
@@ -935,6 +971,7 @@ const machines = [
   },
   {
     id:'cs2', filterCat:'food', color:'teal', icon:'🪵',
+    folder:'improved-cookstove-germany', imageCount:3,
     name:'Improved Cookstove (Germany)', category:'Clean cooking',
     kw:0, size:'Small',
     inputs:['Biomass fuel'],
@@ -947,6 +984,7 @@ const machines = [
   // ── TRANSPORT ────────────────────────────────────────
   {
     id:'eb1', filterCat:'transport', color:'teal', icon:'🚲',
+    folder:'e-bike-charger', imageCount:3,
     name:'E-Bike Charger', category:'Transport',
     kw:0.6, size:'Small',
     inputs:['Electricity','E-bike batteries'],
@@ -1016,6 +1054,37 @@ function buildPartnersGrid(){
 }
 
 /* ─────────────────────────────────────────────
+   CARD IMAGE LOADER
+───────────────────────────────────────────── */
+function loadCardImage(m){
+  const container = document.getElementById('card-img-'+m.id);
+  if(!container || !m.folder) return;
+  // Try images 1.jpg through imageCount (default 3), then fall back to placeholder
+  const count = m.imageCount || 3;
+  const exts = ['jpg','jpeg','png','webp','avif'];
+  const candidates = [];
+  for(let i=1;i<=count;i++) exts.forEach(e=>candidates.push(`images/machines/${m.folder}/${i}.${e}`));
+  ['front','main','product','machine'].forEach(n=>exts.forEach(e=>candidates.push(`images/machines/${m.folder}/${n}.${e}`)));
+
+  let tried = 0;
+  function tryNext(){
+    if(tried >= candidates.length) return; // leave fallback showing
+    const src = candidates[tried++];
+    const img = new Image();
+    img.onload = () => {
+      container.innerHTML = '';
+      const el = document.createElement('img');
+      el.src = src;
+      el.alt = m.name;
+      container.appendChild(el);
+    };
+    img.onerror = tryNext;
+    img.src = src;
+  }
+  tryNext();
+}
+
+/* ─────────────────────────────────────────────
    RENDER CARDS
 ───────────────────────────────────────────── */
 function renderCards(filter='all'){
@@ -1029,6 +1098,12 @@ function renderCards(filter='all'){
     card.style.animationDelay=(i*0.035)+'s';
     card.innerHTML=`
       <div class="card-click-hint">Click to explore →</div>
+      <div class="card-image ${col}" id="card-img-${m.id}">
+        <div class="card-image-fallback">
+          <span>${m.icon}</span>
+          <span class="fallback-label">${m.name}</span>
+        </div>
+      </div>
       <div class="card-top">
         <div class="card-icon ${col}">${m.icon}</div>
         <div class="card-meta">
@@ -1047,6 +1122,7 @@ function renderCards(filter='all'){
       </div>`;
     card.addEventListener('click',()=>openModal(m.id));
     grid.appendChild(card);
+    if(m.folder) loadCardImage(m);
   });
   document.getElementById('heroMachineCount').textContent = machines.length;
 }
@@ -1177,82 +1253,90 @@ function handleOverlayClick(e){if(e.target===document.getElementById('modalOverl
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
 /* ─────────────────────────────────────────────
-   GALLERY
+   GALLERY — local folder-based scrollable strip
 ───────────────────────────────────────────── */
-let galleryImages=[];
-
 function resetGallery(){
-  galleryImages=[];
-  document.getElementById('galleryMain').innerHTML='<div class="img-skeleton"></div>';
+  document.getElementById('galleryMain').innerHTML='<div class="img-skeleton" style="width:100%;height:100%;min-height:220px;border-radius:11px;"></div>';
   document.getElementById('galleryThumbs').innerHTML='';
   document.getElementById('gallerySource').textContent='Loading images…';
 }
 
-async function fetchImages(m,col){
-  try{
-    const resp = await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',max_tokens:1000,
-        tools:[{type:'web_search_20250305',name:'web_search'}],
-        messages:[{role:'user',content:`Search for real product images of a "${m.name}" machine used in ${m.category} in Africa or small-scale agriculture. Find 3 direct image URLs (ending in .jpg, .jpeg, or .png). Return ONLY a JSON array: [{"url":"...","caption":"..."},{"url":"...","caption":"..."},{"url":"...","caption":"..."}]. No other text.`}]
-      })
-    });
-    const data = await resp.json();
-    const text = data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
-    const m2 = text.match(/\[[\s\S]*?\]/);
-    if(m2){renderGallery(JSON.parse(m2[0]),col);}
-    else{renderFallbackGallery(currentMachine);}
-  }catch(e){renderFallbackGallery(currentMachine);}
+function fetchImages(m, col){
+  if(!m.folder){ renderFallbackGallery(m); return; }
+  const count = m.imageCount || 3;
+  const exts = ['jpg','jpeg','png','webp','avif'];
+  const candidates = [];
+  for(let i=1;i<=count;i++) exts.forEach(e=>candidates.push(`images/machines/${m.folder}/${i}.${e}`));
+  ['front','main','product','machine'].forEach(n=>exts.forEach(e=>candidates.push(`images/machines/${m.folder}/${n}.${e}`)));
+
+  const loaded = [];
+  let resolved = 0;
+
+  function done(){
+    resolved++;
+    if(resolved === candidates.length){
+      if(loaded.length > 0) renderScrollableGallery(loaded, col, m);
+      else renderFallbackGallery(m);
+    }
+  }
+
+  candidates.forEach(src => {
+    const img = new Image();
+    img.onload = () => { loaded.push(src); done(); };
+    img.onerror = done;
+    img.src = src;
+  });
 }
 
-function renderGallery(imgs,col){
-  if(!imgs||!imgs.length){renderFallbackGallery(currentMachine);return;}
-  galleryImages=imgs;
-  const main=document.getElementById('galleryMain');
-  main.innerHTML='';
-  const img=document.createElement('img');
-  img.src=imgs[0].url;img.alt=imgs[0].caption||'';
-  img.onerror=()=>{main.innerHTML=fallbackImgHTML(currentMachine);};
-  main.appendChild(img);
-  const thumbs=document.getElementById('galleryThumbs');
-  thumbs.innerHTML='';
-  imgs.forEach((im,i)=>{
-    const t=document.createElement('div');
-    t.className=`gallery-thumb${i===0?' active '+col:''}`;
-    const sk=document.createElement('div');sk.className='img-skeleton';t.appendChild(sk);
-    const ti=document.createElement('img');ti.src=im.url;ti.alt=im.caption||'';
-    ti.onload=()=>sk.remove();ti.onerror=()=>{t.style.display='none';};
-    t.appendChild(ti);
-    t.addEventListener('click',()=>selectThumb(i,col,imgs));
+function renderScrollableGallery(srcs, col, m){
+  // Main large image
+  const main = document.getElementById('galleryMain');
+  main.innerHTML = '';
+  const firstImg = document.createElement('img');
+  firstImg.src = srcs[0];
+  firstImg.alt = m.name;
+  main.appendChild(firstImg);
+
+  // Scrollable thumbnail strip
+  const thumbs = document.getElementById('galleryThumbs');
+  thumbs.innerHTML = '';
+  thumbs.style.cssText = 'display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px;scrollbar-width:thin;';
+
+  srcs.forEach((src, i) => {
+    const t = document.createElement('div');
+    t.style.cssText = 'flex-shrink:0;width:72px;height:72px;border-radius:9px;overflow:hidden;cursor:pointer;scroll-snap-align:start;border:2px solid transparent;transition:border-color .15s,transform .15s;';
+    if(i===0) t.style.borderColor = `var(--${col})`;
+    const img = document.createElement('img');
+    img.src = src; img.alt = m.name;
+    img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+    t.appendChild(img);
+    t.addEventListener('click', () => {
+      main.innerHTML='';
+      const big = document.createElement('img');
+      big.src = src; big.alt = m.name;
+      main.appendChild(big);
+      thumbs.querySelectorAll('div').forEach((el,idx) => {
+        el.style.borderColor = idx===i ? `var(--${col})` : 'transparent';
+        el.style.transform = idx===i ? 'scale(1.05)' : '';
+      });
+      document.getElementById('gallerySource').textContent = `Image ${i+1} of ${srcs.length}`;
+    });
     thumbs.appendChild(t);
   });
-  document.getElementById('gallerySource').textContent=imgs[0].caption||'Product image';
-}
 
-function selectThumb(i,col,imgs){
-  document.querySelectorAll('.gallery-thumb').forEach((t,idx)=>{
-    t.className=`gallery-thumb${idx===i?' active '+col:''}`;
-  });
-  const main=document.getElementById('galleryMain');
-  main.innerHTML='<div class="img-skeleton"></div>';
-  const img=document.createElement('img');img.src=imgs[i].url;img.alt=imgs[i].caption||'';
-  img.onload=()=>main.querySelector('.img-skeleton')?.remove();
-  img.onerror=()=>{main.innerHTML=fallbackImgHTML(currentMachine);};
-  main.appendChild(img);
-  document.getElementById('gallerySource').textContent=imgs[i].caption||'Product image';
+  document.getElementById('gallerySource').textContent = `${srcs.length} image${srcs.length>1?'s':''} available — scroll to browse`;
 }
 
 function fallbackImgHTML(m){
   const col=getColor(m);
   const bg={green:'#E8F5E9',blue:'#E3F2FD',orange:'#FFF3E0',purple:'#F3E5F5',teal:'#E0F2F1'}[col]||'#F5F5F5';
-  return `<div style="width:100%;height:100%;min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:${bg}"><div style="font-size:4.2rem">${m.icon}</div><div style="font-size:0.8rem;color:#888;text-align:center;padding:0 20px">${m.name}</div></div>`;
+  return `<div style="width:100%;height:100%;min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:${bg};border-radius:11px"><div style="font-size:4.2rem">${m.icon}</div><div style="font-size:0.8rem;color:#888;text-align:center;padding:0 20px">${m.name}</div></div>`;
 }
 function renderFallbackGallery(m){
   if(!m)return;
   document.getElementById('galleryMain').innerHTML=fallbackImgHTML(m);
   document.getElementById('galleryThumbs').innerHTML='';
-  document.getElementById('gallerySource').textContent='Add product photos for this machine';
+  document.getElementById('gallerySource').textContent='No product photos available yet';
 }
 
 /* ─────────────────────────────────────────────
@@ -1284,14 +1368,25 @@ async function fetchAIContent(m,col){
 
 /* ─────────────────────────────────────────────
    INIT
-───────────────────────────────────────────── */
-buildPartnerBanner();
-buildPartnersGrid();
-renderCards('all');
-renderTable('agroTable','agro');
-renderTable('coldTable','cold');
-renderTable('workshopTable','workshop');
-renderFoodTable();
+─────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  buildPartnerBanner();
+  buildPartnersGrid();
+  renderCards('all');
+  renderTable('agroTable','agro');
+  renderTable('coldTable','cold');
+  renderTable('workshopTable','workshop');
+  renderFoodTable();
+
+  // Wire filter tabs via event listeners (avoids inline onclick issues)
+  document.getElementById('filterTabs').addEventListener('click', e => {
+    const btn = e.target.closest('.filter-tab');
+    if (!btn) return;
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    renderCards(btn.dataset.filter);
+  });
+});
 </script>
 </body>
 </html>
